@@ -850,76 +850,158 @@ function initHeroVideo(){
     }catch(e){}
   };
 }
-
 /* =====================================================================
-   OPENING + MUSIC
+   OPENING + MUSIC — versi FINAL yang lebih robust
    ===================================================================== */
 function initOpening(data){
-  const opening = document.getElementById('opening');
-  const openingBtn = document.getElementById('openingBtn');
-  const bottomnav = document.getElementById('bottomnav');
+  const opening     = document.getElementById('opening');
+  const openingBtn  = document.getElementById('openingBtn');
+  const bottomnav   = document.getElementById('bottomnav');
   const musicToggle = document.getElementById('musicToggle');
-  const bgMusic = document.getElementById('bgMusic');
+  const bgMusic     = document.getElementById('bgMusic');
 
   if(!opening || !openingBtn) return;
 
   document.body.style.overflow = 'hidden';
 
+  /* ============================================================
+     1. PERSIAPAN AUDIO
+     ============================================================ */
+  if(bgMusic){
+    bgMusic.volume = 0.5;
+    bgMusic.muted = false;
+    bgMusic.setAttribute('playsinline', '');
+    bgMusic.setAttribute('webkit-playsinline', '');
+    bgMusic.playsInline = true;
+
+    /* Mulai buffer audio */
+    try{ bgMusic.load(); }catch(e){}
+
+    /* Track state */
+    bgMusic.addEventListener('play', () => {
+      if(musicToggle) musicToggle.classList.add('playing');
+    });
+    bgMusic.addEventListener('pause', () => {
+      if(musicToggle) musicToggle.classList.remove('playing');
+    });
+    bgMusic.addEventListener('error', () => {
+      console.warn('❌ Audio error:', bgMusic.error);
+    });
+  }
+
+  /* ============================================================
+     2. FUNGSI UNLOCK AUDIO
+     Trik: play() dengan volume 0 → langsung pause
+     Setelah berhasil, hapus semua listener
+     ============================================================ */
   let audioUnlocked = false;
-  function unlockAudioOnce(){
-    if(audioUnlocked) return;
-    audioUnlocked = true;
-    if(!bgMusic) return;
+
+  function unlockAudio(){
+    if(audioUnlocked || !bgMusic) return;
+
+    /* Cek apakah src sudah ada */
+    const src = bgMusic.querySelector('source');
+    const hasSrc = (bgMusic.src && bgMusic.src !== location.href)
+                   || (src && src.src);
+    if(!hasSrc) return;
+
+    /* ⚠️ JANGAN set audioUnlocked = true di sini!
+       Setelah play() berhasil, baru set true */
+    const originalVolume = bgMusic.volume;
     bgMusic.volume = 0;
+
     const p = bgMusic.play();
     if(p !== undefined){
       p.then(() => {
         bgMusic.pause();
         bgMusic.currentTime = 0;
-        bgMusic.volume = 0.5;
-      }).catch(() => { audioUnlocked = false; });
-    }
-  }
-  document.addEventListener('touchstart', unlockAudioOnce, { once: true, passive: true });
-  document.addEventListener('mousedown', unlockAudioOnce, { once: true });
-
-  function tryPlayMusic(){
-    if(!bgMusic) return;
-    const src = bgMusic.querySelector('source');
-    if((!bgMusic.src || bgMusic.src === location.href) && (!src || !src.src)) return;
-
-    bgMusic.volume = 0.5;
-    bgMusic.muted = false;
-    const p = bgMusic.play();
-    if(p !== undefined){
-      p.then(() => {
-        musicToggle.classList.add('playing');
+        bgMusic.volume = originalVolume;
+        audioUnlocked = true;                  // ← set di sini
+        removeUnlockListeners();               // ← hapus listener
+        console.log('✅ Audio unlocked');
       }).catch(() => {
-        musicToggle.classList.remove('playing');
-        bgMusic.addEventListener('canplay', function retryOnce(){
-          bgMusic.removeEventListener('canplay', retryOnce);
-          bgMusic.play().then(() => musicToggle.classList.add('playing')).catch(() => {});
-        }, { once: true });
+        /* Gagal → biarkan flag false, coba lagi di event berikutnya */
+        bgMusic.volume = originalVolume;
       });
     }
   }
 
-  openingBtn.addEventListener('click', () => {
-    tryPlayMusic();
+  /* ✅ Simpan referensi listener biar bisa di-remove */
+  const unlockEvents = ['touchstart','touchend','click','keydown'];
 
+  function removeUnlockListeners(){
+    unlockEvents.forEach(evt => {
+      document.removeEventListener(evt, unlockAudio);
+    });
+  }
+
+  unlockEvents.forEach(evt => {
+    document.addEventListener(evt, unlockAudio, { passive: true });
+  });
+
+  /* ============================================================
+     3. FUNGSI PLAY MUSIK — synchronous + cek readyState
+     ============================================================ */
+  function playMusicSync(){
+    if(!bgMusic) return;
+
+    const src = bgMusic.querySelector('source');
+    const hasSrc = (bgMusic.src && bgMusic.src !== location.href)
+                   || (src && src.src);
+    if(!hasSrc){
+      console.warn('⚠️ Musik belum diset src-nya');
+      return;
+    }
+
+    bgMusic.volume = 0.5;
+    bgMusic.muted = false;
+
+    /* ✅ Panggil play() LANGSUNG di dalam event handler (synchronous) */
+    const p = bgMusic.play();
+
+    if(p !== undefined){
+      p.then(() => {
+        if(musicToggle) musicToggle.classList.add('playing');
+        console.log('✅ Musik berhasil diputar');
+      }).catch(err => {
+        console.warn('⚠️ Musik gagal diputar:', err.message);
+        if(musicToggle) musicToggle.classList.remove('playing');
+
+        /* Retry sekali lagi setelah interaksi user */
+        const retry = () => {
+          bgMusic.play().then(() => {
+            if(musicToggle) musicToggle.classList.add('playing');
+          }).catch(() => {});
+        };
+        document.addEventListener('click', retry, { once: true });
+        document.addEventListener('touchend', retry, { once: true });
+      });
+    }
+  }
+
+  /* ============================================================
+     4. KLIK TOMBOL "BUKA UNDANGAN"
+     ============================================================ */
+  openingBtn.addEventListener('click', () => {
+    /* ✅ Play music SYNCHRONOUSLY (di dalam event handler) */
+    playMusicSync();
+
+    /* Pause & hapus video opening */
     const openingVideo = document.getElementById('openingVideo');
     if(openingVideo){
       try{ openingVideo.pause(); }catch(e){}
       openingVideo.remove();
     }
 
+    /* Play hero video */
     if(typeof window.playHeroVideo === 'function'){
       window.playHeroVideo();
     }
 
+    /* Sembunyikan opening */
     opening.classList.add('hidden');
-    bottomnav.classList.add('show');
-    musicToggle.classList.add('show');
+    if(bottomnav)   bottomnav.classList.add('show');
+    if(musicToggle) musicToggle.classList.add('show');
 
     document.body.style.overflow = '';
 
@@ -928,15 +1010,22 @@ function initOpening(data){
     }, 1600);
   });
 
-  musicToggle.addEventListener('click', () => {
-    if(!bgMusic) return;
-    if(bgMusic.paused){
-      bgMusic.play().then(() => musicToggle.classList.add('playing')).catch(() => {});
-    } else {
-      bgMusic.pause();
-      musicToggle.classList.remove('playing');
-    }
-  });
+  /* ============================================================
+     5. MUSIC TOGGLE (tombol manual)
+     ============================================================ */
+  if(musicToggle){
+    musicToggle.addEventListener('click', () => {
+      if(!bgMusic) return;
+      if(bgMusic.paused){
+        bgMusic.play().then(() => {
+          musicToggle.classList.add('playing');
+        }).catch(() => {});
+      } else {
+        bgMusic.pause();
+        musicToggle.classList.remove('playing');
+      }
+    });
+  }
 }
 
 /* =====================================================================
