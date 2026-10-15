@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#192524">
+<link rel="icon" href="data:,">
+<title>Undangan.ku — Admin Panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/admin.css">
+<script>
+  (function(){
+    var t=null;try{t=localStorage.getItem('undanganku-theme')}catch(e){}
+    if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+    document.documentElement.classList.toggle('dark',t==='dark');
+  })();
+</script>
+</head>
+<body>
+
+<!-- SVG sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-ring" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="6"/><path d="M12 8l-3-3 3-3 3 3-3 3z"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h11a3 3 0 013 3v13H7a3 3 0 01-3-3V4z"/><path d="M4 17a3 3 0 013-3h11"/></symbol>
+    <symbol id="i-man" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a6 6 0 016-6h4a6 6 0 016 6v2"/></symbol>
+    <symbol id="i-woman" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M12 21v-5m-3 5l3-5 3 5"/></symbol>
+    <symbol id="i-handshake" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 17l-2 2-6-6 4-4 3 3"/><path d="M13 7l6 6-4 4-3-3"/><path d="M9 13l3-3"/></symbol>
+    <symbol id="i-party" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5.8 21l5.6-14 8.6 8.6L5.8 21z"/><path d="M14 4v2M20 10h2M16 4l1 1M20 6l-1 1"/></symbol>
+    <symbol id="i-live" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M9 10l6 2-6 2v-4z"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2.5A4 4 0 0119 10c0 5.5-7 10-7 10z"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13" r="4"/><path d="M9 7l1.5-2h3L15 7"/></symbol>
+    <symbol id="i-bank" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6"/><path d="M5 10v9h14v-9"/><path d="M9 19v-6M15 19v-6"/></symbol>
+    <symbol id="i-prev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></symbol>
+    <symbol id="i-next" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></symbol>
+    <symbol id="i-save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h11l3 3v13H5z"/><path d="M8 4v6h8V4M8 20v-6h8v6"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4l10-10-4-4L4 16v4z"/><path d="M14 6l4 4"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 11-2.3-5.7"/><path d="M20 4v5h-5"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 14a8 8 0 11-9-11 6 6 0 009 11z"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/></symbol>
+    <symbol id="i-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></symbol>
+    <symbol id="i-inbox" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/></symbol>
+    <symbol id="i-trending" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 7l-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></symbol>
+  </defs>
+</svg>
+
+<div class="admin-wrap">
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="logo-badge">
+        <svg class="logo-ic" aria-hidden="true"><use href="#i-ring"/></svg>
+      </div>
+      <div class="brand-text">
+        <h1>Undangan.ku</h1>
+        <p id="headerSub">Dashboard</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <button id="btnRefresh" class="hd-btn" type="button" title="Refresh data">
+        <svg class="ic"><use href="#i-refresh"/></svg>
+        <span class="hide-sm">Refresh</span>
+      </button>
+      <button id="themeToggle" class="hd-btn" type="button" title="Ganti tema">
+        <svg class="ic"><use href="#i-moon"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- VIEW: DASHBOARD -->
+  <div id="viewDashboard" class="view active">
+
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon icon-total"><svg class="ic"><use href="#i-inbox"/></svg></div>
+        <div class="stat-body">
+          <span class="stat-label">Total Undangan</span>
+          <strong class="stat-value" id="statTotal">—</strong>
+          <span class="stat-trend" id="statTotalTrend"></span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon icon-month"><svg class="ic"><use href="#i-trending"/></svg></div>
+        <div class="stat-body">
+          <span class="stat-label">Bulan Ini</span>
+          <strong class="stat-value" id="statBulanIni">—</strong>
+          <span class="stat-trend" id="statMonthTrend"></span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon icon-premium"><svg class="ic"><use href="#i-star"/></svg></div>
+        <div class="stat-body">
+          <span class="stat-label">Premium &amp; Exclusive</span>
+          <strong class="stat-value" id="statPremium">—</strong>
+          <span class="stat-trend" id="statPremiumTrend"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div class="panel-title">
+          <h2><svg class="ic"><use href="#i-list"/></svg> Daftar Undangan</h2>
+          <p class="panel-sub" id="tableSub">Memuat data...</p>
+        </div>
+        <div class="panel-actions">
+          <div class="search-wrap">
+            <svg class="search-ic"><use href="#i-search"/></svg>
+            <input type="search" id="searchBox" placeholder="Cari slug atau nama...">
+          </div>
+          <select id="filterPaket" class="filter-select">
+            <option value="">Semua Paket</option>
+            <option value="basic">Basic</option>
+            <option value="premium">Premium</option>
+            <option value="exclusive">Exclusive</option>
+          </select>
+          <button id="btnAddNew" class="btn-add-new" type="button">
+            <svg class="ic"><use href="#i-plus"/></svg> <span>Tambah</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Slug</th>
+              <th>Mempelai</th>
+              <th>Paket</th>
+              <th class="hide-sm">Tema</th>
+              <th class="hide-sm">Akad</th>
+              <th class="hide-sm">Foto</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <tr><td colspan="8" class="empty-row">Memuat data...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <!-- VIEW: FORM -->
+  <div id="viewForm" class="view">
+
+    <div class="editor-bar">
+      <button id="btnBackToDash" class="btn-back" type="button">
+        <svg class="ic"><use href="#i-arrow-left"/></svg> Kembali
+      </button>
+      <span class="editor-title" id="editorTitle">Buat Undangan Baru</span>
+      <button id="btnReset" class="btn-reset" type="button">
+        <svg class="ic"><use href="#i-refresh"/></svg> <span>Reset</span>
+      </button>
+    </div>
+
+    <nav class="stepper">
+      <div class="stepper-track"><div class="stepper-progress" id="stepperProgress"></div></div>
+      <ol class="stepper-list">
+        <li class="step active" data-step="0"><button type="button" class="step-btn"><span class="step-num">1</span><span class="step-label">Umum</span><svg class="step-ic"><use href="#i-book"/></svg></button></li>
+        <li class="step" data-step="1"><button type="button" class="step-btn"><span class="step-num">2</span><span class="step-label">Pria</span><svg class="step-ic"><use href="#i-man"/></svg></button></li>
+        <li class="step" data-step="2"><button type="button" class="step-btn"><span class="step-num">3</span><span class="step-label">Wanita</span><svg class="step-ic"><use href="#i-woman"/></svg></button></li>
+        <li class="step" data-step="3"><button type="button" class="step-btn"><span class="step-num">4</span><span class="step-label">Akad</span><svg class="step-ic"><use href="#i-handshake"/></svg></button></li>
+        <li class="step" data-step="4"><button type="button" class="step-btn"><span class="step-num">5</span><span class="step-label">Resepsi</span><svg class="step-ic"><use href="#i-party"/></svg></button></li>
+        <li class="step" data-step="5"><button type="button" class="step-btn"><span class="step-num">6</span><span class="step-label">Live</span><svg class="step-ic"><use href="#i-live"/></svg></button></li>
+        <li class="step" data-step="6"><button type="button" class="step-btn"><span class="step-num">7</span><span class="step-label">Cerita</span><svg class="step-ic"><use href="#i-heart"/></svg></button></li>
+        <li class="step" data-step="7"><button type="button" class="step-btn"><span class="step-num">8</span><span class="step-label">Galeri</span><svg class="step-ic"><use href="#i-camera"/></svg></button></li>
+        <li class="step" data-step="8"><button type="button" class="step-btn"><span class="step-num">9</span><span class="step-label">Rekening</span><svg class="step-ic"><use href="#i-bank"/></svg></button></li>
+      </ol>
+      <div class="stepper-meta"><span id="stepMeta">Langkah 1 dari 9 — Data umum</span></div>
+    </nav>
+
+    <section class="panel form-panel">
+      <form id="undanganForm" novalidate autocomplete="off">
+        <input type="hidden" id="editId">
+
+        <!-- STEP 1 -->
+        <div class="step-content active" data-step-content="0">
+          <div class="step-intro">
+            <h3>Informasi Dasar</h3>
+            <p>Slug akan jadi alamat link undangan, mis. <code>dinda-rifki</code>.</p>
+          </div>
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label for="slug">Slug URL <span class="req">*</span></label>
+              <div class="input-affix">
+                <span class="affix">/?invite=</span>
+                <input type="text" id="slug" placeholder="dinda-rifki">
+              </div>
+            </div>
+            <div class="form-group full-width">
+              <label for="musik">Musik Latar (opsional)</label>
+              <input type="url" id="musik" placeholder="https://contoh.com/lagu.mp3">
+            </div>
+            <div class="form-group full-width" id="paketTemaInfoWrap" hidden>
+              <label>Paket &amp; Tema</label>
+              <div class="paket-info">
+                <div><span class="apk-label">Paket</span><strong id="adminPaketName">—</strong></div>
+                <div class="apk-div"></div>
+                <div><span class="apk-label">Tema</span><strong id="adminTemaName">—</strong></div>
+              </div>
+            </div>
+            <div class="form-group full-width">
+              <label>Rangkaian Acara</label>
+              <div id="rangkaianList" class="dynamic-list"></div>
+              <button type="button" class="btn-add" onclick="addRangkaian()">
+                <svg class="ic"><use href="#i-plus"/></svg> Tambah Rangkaian
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="step-content" data-step-content="1">
+          <div class="step-intro"><h3>Data Mempelai Pria</h3><p>Lengkapi nama, orang tua, dan foto.</p></div>
+          <div class="form-grid">
+            <div class="form-group"><label for="namaPria">Nama Lengkap <span class="req">*</span></label><input type="text" id="namaPria" placeholder="Rifki Pratama"></div>
+            <div class="form-group"><label for="gelarPria">Gelar</label><input type="text" id="gelarPria" placeholder="S.Kom."></div>
+            <div class="form-group"><label for="urutanPria">Urutan Anak</label><input type="text" id="urutanPria" placeholder="Putra pertama"></div>
+            <div class="form-group"><label for="instagramPria">Instagram</label><input type="text" id="instagramPria" placeholder="username"></div>
+            <div class="form-group"><label for="namaBapakPria">Nama Bapak</label><input type="text" id="namaBapakPria"></div>
+            <div class="form-group"><label for="namaIbuPria">Nama Ibu</label><input type="text" id="namaIbuPria"></div>
+            <div class="form-group full-width">
+              <label for="fotoPria">Foto Mempelai Pria <span class="req">*</span></label>
+              <div class="upload-zone" id="uploadPria">
+                <svg class="upload-ic"><use href="#i-camera"/></svg>
+                <p><b>Klik untuk pilih foto</b> atau seret ke sini</p>
+                <small>JPG/PNG/WebP, maks. 15 MB</small>
+                <input type="file" id="fotoPria" accept="image/jpeg,image/png,image/webp" hidden>
+              </div>
+              <div class="preview" id="previewPria"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="step-content" data-step-content="2">
+          <div class="step-intro"><h3>Data Mempelai Wanita</h3><p>Lengkapi data mempelai wanita.</p></div>
+          <div class="form-grid">
+            <div class="form-group"><label for="namaWanita">Nama Lengkap <span class="req">*</span></label><input type="text" id="namaWanita" placeholder="Dinda Ayu"></div>
+            <div class="form-group"><label for="gelarWanita">Gelar</label><input type="text" id="gelarWanita" placeholder="S.E."></div>
+            <div class="form-group"><label for="urutanWanita">Urutan Anak</label><input type="text" id="urutanWanita" placeholder="Putri kedua"></div>
+            <div class="form-group"><label for="instagramWanita">Instagram</label><input type="text" id="instagramWanita" placeholder="username"></div>
+            <div class="form-group"><label for="namaBapakWanita">Nama Bapak</label><input type="text" id="namaBapakWanita"></div>
+            <div class="form-group"><label for="namaIbuWanita">Nama Ibu</label><input type="text" id="namaIbuWanita"></div>
+            <div class="form-group full-width">
+              <label for="fotoWanita">Foto Mempelai Wanita <span class="req">*</span></label>
+              <div class="upload-zone" id="uploadWanita">
+                <svg class="upload-ic"><use href="#i-camera"/></svg>
+                <p><b>Klik untuk pilih foto</b> atau seret ke sini</p>
+                <small>JPG/PNG/WebP, maks. 15 MB</small>
+                <input type="file" id="fotoWanita" accept="image/jpeg,image/png,image/webp" hidden>
+              </div>
+              <div class="preview" id="previewWanita"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="step-content" data-step-content="3">
+          <div class="step-intro"><h3>Akad Nikah</h3><p>Waktu dan lokasi akad nikah.</p></div>
+          <div class="form-grid">
+            <div class="form-group"><label for="tanggalAkad">Tanggal <span class="req">*</span></label><input type="date" id="tanggalAkad"></div>
+            <div class="form-group"><label for="jamAkadMulai">Jam Mulai <span class="req">*</span></label><input type="time" id="jamAkadMulai"></div>
+            <div class="form-group">
+              <label for="jamAkadSelesai">Jam Selesai <span class="req">*</span></label>
+              <div class="input-affix">
+                <input type="text" id="jamAkadSelesai" placeholder="10:00 atau Selesai" maxlength="8" inputmode="numeric">
+                <button type="button" class="affix-btn" data-target="jamAkadSelesai">Selesai</button>
+              </div>
+            </div>
+            <div class="form-group"><label for="lokasiAkad">Lokasi <span class="req">*</span></label><input type="text" id="lokasiAkad" placeholder="Masjid / Gedung"></div>
+            <div class="form-group full-width"><label for="alamatAkad">Alamat <span class="req">*</span></label><textarea id="alamatAkad" rows="2" placeholder="Jalan, nomor, kelurahan, kota"></textarea></div>
+            <div class="form-group full-width"><label for="mapsAkad">Link Google Maps (opsional)</label><input type="url" id="mapsAkad" placeholder="https://maps.app.goo.gl/..."></div>
+          </div>
+        </div>
+
+        <!-- STEP 5 -->
+        <div class="step-content" data-step-content="4">
+          <div class="step-intro"><h3>Resepsi</h3><p>Waktu dan lokasi resepsi.</p></div>
+          <div class="form-grid">
+            <div class="form-group"><label for="tanggalResepsi">Tanggal <span class="req">*</span></label><input type="date" id="tanggalResepsi"></div>
+            <div class="form-group"><label for="jamResepsiMulai">Jam Mulai <span class="req">*</span></label><input type="time" id="jamResepsiMulai"></div>
+            <div class="form-group">
+              <label for="jamResepsiSelesai">Jam Selesai <span class="req">*</span></label>
+              <div class="input-affix">
+                <input type="text" id="jamResepsiSelesai" placeholder="13:00 atau Selesai" maxlength="8" inputmode="numeric">
+                <button type="button" class="affix-btn" data-target="jamResepsiSelesai">Selesai</button>
+              </div>
+            </div>
+            <div class="form-group"><label for="lokasiResepsi">Lokasi <span class="req">*</span></label><input type="text" id="lokasiResepsi" placeholder="Gedung / Rumah"></div>
+            <div class="form-group full-width"><label for="alamatResepsi">Alamat <span class="req">*</span></label><textarea id="alamatResepsi" rows="2"></textarea></div>
+            <div class="form-group full-width"><label for="mapsResepsi">Link Google Maps (opsional)</label><input type="url" id="mapsResepsi" placeholder="https://maps.app.goo.gl/..."></div>
+          </div>
+        </div>
+
+        <!-- STEP 6 -->
+        <div class="step-content" data-step-content="5">
+          <div class="step-intro"><h3>Live Streaming</h3><p>Link siaran langsung (opsional).</p></div>
+          <div class="form-grid">
+            <div class="form-group"><label for="livePlatform">Platform</label><input type="text" id="livePlatform" placeholder="YouTube" list="platformList"></div>
+            <div class="form-group full-width"><label for="liveLink">Link Live</label><input type="url" id="liveLink" placeholder="https://youtube.com/live/..."></div>
+          </div>
+        </div>
+
+        <!-- STEP 7 -->
+        <div class="step-content" data-step-content="6">
+          <div class="step-intro"><h3>Love Story</h3><p>Ceritakan momen penting perjalanan cinta.</p></div>
+          <div id="storyList" class="dynamic-list"></div>
+          <button type="button" class="btn-add" onclick="addStory()">
+            <svg class="ic"><use href="#i-plus"/></svg> Tambah Bab Cerita
+          </button>
+        </div>
+
+        <!-- STEP 8 -->
+        <div class="step-content" data-step-content="7">
+          <div class="step-intro"><h3>Galeri Foto</h3><p>Hingga 20 foto momen terbaik.</p></div>
+          <div class="galeri-head">
+            <span class="galeri-label">Foto Galeri <span class="galeri-count" id="galeriCount">0 / 20</span></span>
+            <button type="button" class="btn-add" id="btnAddFoto">
+              <svg class="ic"><use href="#i-plus"/></svg> Tambah Foto
+            </button>
+          </div>
+          <input type="file" id="galeriFiles" accept="image/jpeg,image/png,image/webp" multiple hidden>
+          <div id="galeriPreview" class="galeri-grid"></div>
+        </div>
+
+        <!-- STEP 9 -->
+        <div class="step-content" data-step-content="8">
+          <div class="step-intro"><h3>Rekening / E-Wallet</h3><p>Untuk tamu yang ingin mengirim hadiah.</p></div>
+          <div id="rekeningList" class="dynamic-list"></div>
+          <button type="button" class="btn-add" onclick="addRekening()">
+            <svg class="ic"><use href="#i-plus"/></svg> Tambah Rekening
+          </button>
+        </div>
+
+        <div class="wizard-nav">
+          <button type="button" class="btn-ghost" id="btnPrev">
+            <svg class="ic"><use href="#i-prev"/></svg> Sebelumnya
+          </button>
+          <button type="button" class="btn-primary" id="btnNext">
+            Lanjut <svg class="ic"><use href="#i-next"/></svg>
+          </button>
+          <button type="submit" class="btn-primary" id="btnSubmit" hidden>
+            <svg class="ic"><use href="#i-save"/></svg> <span>Simpan</span>
+          </button>
+        </div>
+
+        <p class="autosave-hint" id="autosaveHint">💾 Draft otomatis tersimpan</p>
+      </form>
+    </section>
+  </div>
+
+</div>
+
+<datalist id="platformList">
+  <option>YouTube</option><option>Zoom</option><option>Instagram</option>
+  <option>TikTok</option><option>Google Meet</option>
+</datalist>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script>
+  (function(){
+    var btn=document.getElementById('themeToggle'),root=document.documentElement;
+    function sync(){btn.innerHTML='<svg class="ic"><use href="#'+(root.classList.contains('dark')?'i-sun':'i-moon')+'"/></svg>'}
+    sync();
+    btn.addEventListener('click',function(){
+      var d=root.classList.toggle('dark');
+      try{localStorage.setItem('undanganku-theme',d?'dark':'light')}catch(e){}
+      sync();
+    });
+  })();
+
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('.affix-btn'); if(!b) return;
+    var t=document.getElementById(b.dataset.target); if(!t) return;
+    t.value='Selesai'; t.dispatchEvent(new Event('input',{bubbles:true}));
+  });
+
+  ['Pria','Wanita'].forEach(function(s){
+    var z=document.getElementById('upload'+s), f=document.getElementById('foto'+s);
+    if(!z||!f) return;
+    z.addEventListener('click',function(){f.click()});
+    ['dragenter','dragover'].forEach(function(ev){z.addEventListener(ev,function(e){e.preventDefault();z.classList.add('drag')})});
+    ['dragleave','drop'].forEach(function(ev){z.addEventListener(ev,function(){z.classList.remove('drag')})});
+    z.addEventListener('drop',function(e){
+      e.preventDefault();
+      var file=e.dataTransfer.files[0]; if(!file) return;
+      var dt=new DataTransfer(); dt.items.add(file); f.files=dt.files;
+      f.dispatchEvent(new Event('change',{bubbles:true}));
+    });
+  });
+</script>
+<script src="js/admin-gate.js"></script>
+<script src="js/admin.js"></script>
+<script src="js/admin-orders.js"></script>
+</body>
+</html>

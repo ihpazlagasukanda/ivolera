@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ivolera — Undangan Pernikahan Digital Elegan & Modern</title>
+<link rel="icon" href="img/Logo.png" type="image/png">
+<link rel="apple-touch-icon" href="img/Logo.png">
+<meta name="description" content="Ivolera: undangan pernikahan digital elegan, fitur lengkap, mulai Rp49.000. Buat undangan online dalam hitungan menit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:'class',theme:{extend:{fontFamily:{display:['"Cormorant Garamond"','serif'],sans:['"Plus Jakarta Sans"','sans-serif']}}}}</script>
+<link rel="stylesheet" href="css/chatbot.css">
+
+<style>
+:root{--bg:#F7F5F3;--bg2:#EFECE9;--ink:#192524;--mut:rgba(25,37,36,.62);--line:#D0D5CE;--card:#fff;--acc:#3C5759;--gold:#C8A25E;--mint:#D1EBDB;--deep:#192524}
+.dark{--bg:#0F1817;--bg2:#162221;--ink:#EFECE9;--mut:rgba(239,236,233,.62);--line:#2F4547;--card:#192524;--acc:#9CC9B0}
+.sd{--bg:#192524;--ink:#EFECE9;--mut:rgba(239,236,233,.68);--line:rgba(209,235,219,.16);--card:rgba(255,255,255,.06);--acc:#D1EBDB}
+.sm{--bg:#D1EBDB;--ink:#192524;--mut:rgba(25,37,36,.7);--line:rgba(25,37,36,.15);--card:#F7F5F3;--acc:#2A3F41}
+.sx{--bg:#0F1817;--ink:#EFECE9;--mut:rgba(239,236,233,.6);--line:rgba(209,235,219,.14);--card:rgba(255,255,255,.05);--acc:#D1EBDB}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);transition:background .3s,color .3s;overflow-x:hidden}
+.sec{background:var(--bg);color:var(--ink);position:relative}
+.mut{color:var(--mut)} .acc{color:var(--acc)} .gold{color:var(--gold)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 36px -18px rgba(0,0,0,.35)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:16px;font-weight:700;padding:14px 26px;transition:.25s;position:relative;overflow:hidden;text-decoration:none;cursor:pointer;font-family:inherit;border:none;font-size:14px}
+.btn-p{background:linear-gradient(135deg,#3C5759,#192524);color:#fff;box-shadow:0 12px 24px -10px rgba(60,87,89,.6)}
+.btn-g{background:linear-gradient(135deg,#E2C27F,#C8A25E);color:#192524;box-shadow:0 12px 28px -10px rgba(200,162,94,.7)}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.35),transparent 70%);transform:translateX(-120%);transition:.7s;pointer-events:none}
+.btn:hover::after{transform:translateX(120%)}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.h2{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(30px,4vw,44px);line-height:1.12;margin-top:12px}
+.dots{background-image:radial-gradient(rgba(60,87,89,.12) 1px,transparent 1px);background-size:22px 22px}
+.sd .dots,.sx .dots{background-image:radial-gradient(rgba(209,235,219,.08) 1px,transparent 1px)}
+.ico{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(200,162,94,.15);color:var(--gold)}
+.reveal{opacity:0;transform:translateY(20px);transition:.7s cubic-bezier(.22,1,.36,1)}.reveal.v{opacity:1;transform:none}
+.fade{opacity:0;animation:fu .7s cubic-bezier(.22,1,.36,1) forwards;transform:translateY(16px)}@keyframes fu{to{opacity:1;transform:none}}
+.float{animation:fl 6s ease-in-out infinite}@keyframes fl{50%{transform:translateY(-10px)}}
+#nav.sc{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#C8A25E,#3C5759,#D1EBDB);z-index:100;transition:width .1s}
+#mm{max-height:0;overflow:hidden;opacity:0;transition:.35s}#mm.open{max-height:420px;opacity:1}
+.tbtn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--card);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.price-hero{display:inline-flex;align-items:center;gap:14px;padding:14px 22px;border-radius:22px;background:linear-gradient(135deg,#192524,#3C5759);color:#fff;border:1px solid rgba(200,162,94,.5);box-shadow:0 20px 40px -15px rgba(25,37,36,.6),0 0 40px -10px rgba(200,162,94,.45);position:relative;overflow:hidden;animation:phGlow 3s ease-in-out infinite}
+@keyframes phGlow{0%,100%{box-shadow:0 20px 40px -15px rgba(25,37,36,.6),0 0 40px -10px rgba(200,162,94,.45)}50%{box-shadow:0 25px 50px -15px rgba(25,37,36,.7),0 0 60px -5px rgba(200,162,94,.7)}}
+.price-hero::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(from 0deg,transparent,rgba(226,194,127,.2),transparent 30%);animation:phRot 6s linear infinite;pointer-events:none}
+@keyframes phRot{to{transform:rotate(360deg)}}
+.price-hero>*{position:relative;z-index:1}
+.price-hero .num{font-family:'Plus Jakarta Sans';font-size:36px;font-weight:800;line-height:1;background:linear-gradient(135deg,#fff,#E2C27F);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.pop{background:linear-gradient(160deg,#243634,#0F1817);color:#EFECE9;border:2px solid var(--gold);box-shadow:0 30px 60px -20px rgba(0,0,0,.55);position:relative}
+.pop::before{content:"";position:absolute;inset:-2px;border-radius:inherit;background:linear-gradient(135deg,#C8A25E,#3C5759,#C8A25E);z-index:-1;opacity:.35;animation:popGlow 4s ease-in-out infinite}
+@keyframes popGlow{0%,100%{opacity:.25}50%{opacity:.6}}
+.ribbon{position:absolute;top:16px;right:-36px;transform:rotate(35deg);background:var(--gold);color:#192524;font-size:10px;font-weight:800;letter-spacing:.14em;padding:5px 40px;animation:ribShine 3s ease-in-out infinite;z-index:5}
+@keyframes ribShine{0%,100%{filter:brightness(1)}50%{filter:brightness(1.3)}}
+.cd{background:#192524;color:#fff;border:1px solid #3C5759;border-radius:12px;padding:8px 12px;min-width:56px;text-align:center}
+details summary::-webkit-details-marker{display:none}
+details[open] .chev{transform:rotate(180deg)}.chev{transition:.25s}
+::-webkit-scrollbar{width:8px}::-webkit-scrollbar-thumb{background:rgba(60,87,89,.3);border-radius:9px}
+.logo-img{width:36px;height:36px;object-fit:contain;border-radius:10px;background:transparent;display:block;transition:opacity .25s}
+.logo-fallback{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#3C5759,#192524);display:flex;align-items:center;justify-content:center}
+.logo-lg{width:52px;height:52px;object-fit:contain;display:block;background:transparent;border-radius:12px}
+.petal-layer{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.petal-img{position:absolute;top:-60px;opacity:0;animation:petalFall linear infinite;will-change:transform,opacity}
+.petal-img img{display:block;width:100%;height:auto;background:transparent;filter:drop-shadow(0 4px 8px rgba(0,0,0,.15))}
+@keyframes petalFall{0%{transform:translateY(-10%) translateX(0) rotate(0deg);opacity:0}8%{opacity:.9}50%{transform:translateY(50vh) translateX(50px) rotate(180deg);opacity:.9}92%{opacity:.6}100%{transform:translateY(105vh) translateX(-30px) rotate(360deg);opacity:0}}
+.petal-img.p2{animation-duration:14s}.petal-img.p3{animation-duration:18s}.petal-img.p4{animation-duration:12s}.petal-img.p5{animation-duration:16s}
+.corner-img{position:absolute;pointer-events:none;z-index:2;animation:cfSway 8s ease-in-out infinite;transform-origin:center;filter:drop-shadow(0 12px 30px rgba(0,0,0,.18))}
+.corner-img img{width:100%;height:auto;display:block;background:transparent}
+@keyframes cfSway{0%,100%{transform:rotate(0deg) scale(1)}50%{transform:rotate(6deg) scale(1.05)}}
+.corner-img.tl{top:-40px;left:-40px}.corner-img.tr{top:-40px;right:-40px;animation-delay:1s}
+.corner-img.bl{bottom:-40px;left:-40px;animation-delay:2s}.corner-img.br{bottom:-40px;right:-40px;animation-delay:3s}
+.bloom-img{position:absolute;pointer-events:none;animation:bloomPulse 5s ease-in-out infinite;transform-origin:center;filter:drop-shadow(0 8px 20px rgba(0,0,0,.15))}
+.bloom-img img{width:100%;height:auto;display:block;background:transparent}
+@keyframes bloomPulse{0%,100%{transform:scale(1) rotate(0deg);opacity:.75}50%{transform:scale(1.15) rotate(10deg);opacity:1}}
+.bloom-img.d1{animation-delay:.5s}.bloom-img.d2{animation-delay:1.2s}.bloom-img.d3{animation-delay:2s}.bloom-img.d4{animation-delay:2.8s}
+.card-flower-img{position:absolute;pointer-events:none;animation:bloomPulse 4s ease-in-out infinite;filter:drop-shadow(0 6px 14px rgba(0,0,0,.15))}
+.card-flower-img img{width:100%;height:auto;display:block;background:transparent}
+.spark{position:absolute;pointer-events:none;animation:spk 3s ease-in-out infinite}
+.spark::before,.spark::after{content:"";position:absolute;background:#E2C27F;left:50%;top:50%;transform:translate(-50%,-50%)}
+.spark::before{width:2px;height:14px;border-radius:2px}
+.spark::after{width:14px;height:2px;border-radius:2px}
+.spark.s2{animation-delay:1s}.spark.s3{animation-delay:2s}.spark.s4{animation-delay:1.5s}
+@keyframes spk{0%,100%{opacity:0;transform:scale(.5)}50%{opacity:1;transform:scale(1)}}
+.butterfly{position:absolute;pointer-events:none;animation:flutter 9s ease-in-out infinite}
+@keyframes flutter{0%,100%{transform:translate(0,0) rotate(0)}25%{transform:translate(25px,-30px) rotate(10deg)}50%{transform:translate(-15px,-60px) rotate(-8deg)}75%{transform:translate(20px,-25px) rotate(6deg)}}
+.butterfly .wing{transform-origin:center;animation:wingFlap 1.2s ease-in-out infinite}
+@keyframes wingFlap{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.55)}}
+.hero-glow{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;animation:glowMove 14s ease-in-out infinite}
+@keyframes glowMove{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-30px) scale(1.15)}66%{transform:translate(-30px,40px) scale(.95)}}
+.shimmer{background:linear-gradient(90deg,var(--gold) 0%,#F4DDA6 40%,var(--gold) 60%,#F4DDA6 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shim 4s linear infinite}
+@keyframes shim{to{background-position:-200% 0}}
+.orn-line{display:flex;align-items:center;justify-content:center;gap:14px;margin:8px auto}
+.orn-line::before,.orn-line::after{content:"";height:1px;width:70px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.orn-star{color:var(--gold);animation:starSpin 4s linear infinite;display:inline-block}
+@keyframes starSpin{to{transform:rotate(360deg)}}
+.fly{position:absolute;pointer-events:none;animation:flyPath 12s ease-in-out infinite}
+@keyframes flyPath{0%,100%{transform:translate(0,0) rotate(0)}25%{transform:translate(30px,-40px) rotate(8deg)}50%{transform:translate(-20px,-80px) rotate(-6deg)}75%{transform:translate(20px,-30px) rotate(5deg)}}
+.ping-ring{position:absolute;inset:0;border-radius:99px;border:1px solid #C8A25E;opacity:0;animation:pingRing 2s ease-out infinite}
+@keyframes pingRing{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.6);opacity:0}}
+
+/* =====================================================================
+   MODAL PILIH TEMA
+   ===================================================================== */
+.modal-mask{position:fixed;inset:0;background:rgba(15,24,23,.75);backdrop-filter:blur(8px);
+  z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;
+  opacity:0;pointer-events:none;transition:.3s}
+.modal-mask.open{opacity:1;pointer-events:auto}
+.modal-card{background:var(--card);border:1px solid var(--line);border-radius:24px;
+  max-width:900px;width:100%;max-height:92vh;overflow-y:auto;
+  padding:26px 24px;box-shadow:0 30px 60px -20px rgba(0,0,0,.6);
+  transform:translateY(30px) scale(.95);transition:.35s cubic-bezier(.22,1,.36,1);
+  position:relative;color:var(--ink)}
+.modal-mask.open .modal-card{transform:translateY(0) scale(1)}
+.modal-x{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;
+  border:1px solid var(--line);background:var(--bg2);cursor:pointer;font-size:16px;
+  display:flex;align-items:center;justify-content:center;color:var(--ink);transition:.2s;z-index:5}
+.modal-x:hover{background:rgba(229,62,62,.15);color:#E53E3E;border-color:transparent}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;margin-bottom:6px}
+.modal-sub{font-size:13px;color:var(--mut);margin-bottom:18px;line-height:1.5}
+
+/* Pilih paket (tab di dalam modal tema) */
+.paket-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px;
+  padding:6px;background:var(--bg2);border-radius:14px;border:1px solid var(--line)}
+.paket-tab{padding:12px 10px;border-radius:10px;border:none;background:transparent;
+  cursor:pointer;font-family:inherit;text-align:center;transition:.2s;color:var(--mut)}
+.paket-tab:hover{background:rgba(200,162,94,.1)}
+.paket-tab.active{background:linear-gradient(135deg,#E2C27F,#C8A25E);color:#192524;
+  box-shadow:0 6px 14px -8px rgba(200,162,94,.9)}
+.paket-tab .pt-name{display:block;font-size:13px;font-weight:800;letter-spacing:.02em}
+.paket-tab .pt-price{display:block;font-size:11px;font-weight:600;margin-top:2px;opacity:.85}
+
+/* Info paket aktif */
+.paket-info{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px 16px;border-radius:14px;background:rgba(200,162,94,.1);
+  border:1.5px solid var(--gold);margin-bottom:18px}
+.paket-info-label{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.paket-info-desc{font-size:12.5px;color:var(--ink);margin-top:3px;font-weight:500}
+.paket-info-price{font-size:20px;font-weight:800;color:var(--gold);white-space:nowrap}
+
+/* Grid tema */
+.tema-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-bottom:18px}
+.tema-card{position:relative;border-radius:16px;overflow:hidden;border:2px solid var(--line);
+  background:var(--bg2);cursor:pointer;transition:.28s cubic-bezier(.22,1,.36,1);user-select:none}
+.tema-card:hover{border-color:var(--gold);transform:translateY(-4px);
+  box-shadow:0 20px 36px -18px rgba(200,162,94,.6)}
+.tema-card.selected{border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(200,162,94,.35),0 20px 36px -18px rgba(200,162,94,.7);
+  transform:scale(1.02)}
+.tema-card.selected::after{content:'✓';position:absolute;top:10px;right:10px;
+  width:30px;height:30px;border-radius:50%;background:var(--gold);color:#192524;
+  display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;
+  box-shadow:0 4px 12px rgba(0,0,0,.3);animation:temaCheck .3s cubic-bezier(.34,1.56,.64,1);z-index:5}
+@keyframes temaCheck{from{transform:scale(0) rotate(-90deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+
+/* ✅ TEMA PREVIEW — Cover image 2:3 dengan fallback gradient */
+.tema-preview{
+  aspect-ratio:2/3;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:20px 14px;
+  text-align:center;
+  color:#fff;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  transition:transform .5s cubic-bezier(.22,1,.36,1);
+}
+.tema-card:hover .tema-preview{transform:scale(1.03);}
+.tema-preview::before{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,
+    rgba(15,24,23,.35) 0%,
+    rgba(15,24,23,.55) 50%,
+    rgba(15,24,23,.85) 100%);
+  z-index:1;pointer-events:none;
+}
+.tema-preview > *{position:relative;z-index:2;}
+.tema-preview .tp-eyebrow{font-size:9px;letter-spacing:.3em;text-transform:uppercase;
+  opacity:.85;margin-bottom:8px;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+.tema-preview .tp-couple{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;
+  line-height:1.15;margin-bottom:8px;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.6)}
+.tema-preview .tp-date{font-size:10px;opacity:.85;margin-bottom:12px;color:#fff;
+  text-shadow:0 1px 4px rgba(0,0,0,.5)}
+.tema-preview .tp-btn{padding:5px 14px;border-radius:99px;font-size:9px;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.4);backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);color:#fff}
+.tema-preview .tp-deco{position:absolute;opacity:.28;pointer-events:none;font-size:36px;color:#fff}
+
+/* Hover overlay — tombol demo */
+.tema-demo{position:absolute;inset:0;background:rgba(15,24,23,.6);backdrop-filter:blur(4px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  opacity:0;transition:.25s;pointer-events:none;z-index:3}
+.tema-card:hover .tema-demo{opacity:1;pointer-events:auto}
+.tema-demo-btn{width:52px;height:52px;border-radius:50%;
+  background:linear-gradient(135deg,#E2C27F,#C8A25E);color:#192524;
+  display:flex;align-items:center;justify-content:center;font-size:22px;
+  box-shadow:0 12px 24px -8px rgba(200,162,94,.8);transition:.2s;border:none;cursor:pointer}
+.tema-demo-btn:hover{transform:scale(1.1)}
+.tema-demo-label{font-size:11px;font-weight:700;color:#fff;text-shadow:0 2px 4px rgba(0,0,0,.5)}
+
+.tema-info{padding:12px 14px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;gap:8px;background:var(--card)}
+.tema-info h4{font-size:13px;font-weight:800;margin:0;color:var(--ink);line-height:1.2}
+.tema-info p{font-size:10.5px;color:var(--mut);margin:2px 0 0}
+.tema-tag{padding:3px 8px;border-radius:6px;font-size:9px;font-weight:800;letter-spacing:.05em;
+  text-transform:uppercase;white-space:nowrap}
+.tema-tag.basic{background:rgba(209,235,219,.3);color:#2F855A}
+.tema-tag.premium{background:rgba(200,162,94,.25);color:#8B6A1F}
+.tema-tag.exclusive{background:rgba(60,87,89,.3);color:#3C5759}
+
+/* Locked */
+.tema-locked{position:absolute;inset:0;background:rgba(15,24,23,.78);backdrop-filter:blur(3px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  color:#fff;text-align:center;padding:14px;cursor:not-allowed;z-index:4}
+.tema-locked .lock-ic{font-size:32px;margin-bottom:4px}
+.tema-locked .lock-txt{font-size:11px;font-weight:700}
+.tema-locked .lock-sub{font-size:10px;opacity:.7}
+.tema-card.locked:hover{border-color:var(--line);transform:none;box-shadow:none}
+.tema-card.locked:hover .tema-demo{opacity:0;pointer-events:none}
+
+/* Custom design card */
+.tema-custom{grid-column:1/-1;border:2px dashed var(--gold);
+  background:linear-gradient(135deg,rgba(200,162,94,.12),rgba(200,162,94,.03));
+  padding:20px;border-radius:16px;display:flex;align-items:center;gap:16px;
+  cursor:pointer;transition:.25s}
+.tema-custom:hover{background:rgba(200,162,94,.18);transform:translateY(-2px)}
+.tema-custom.selected{border-style:solid;background:rgba(200,162,94,.22);
+  box-shadow:0 0 0 3px rgba(200,162,94,.35)}
+.tema-custom-ic{width:56px;height:56px;border-radius:14px;
+  background:linear-gradient(135deg,#E2C27F,#C8A25E);display:flex;align-items:center;
+  justify-content:center;color:#192524;font-size:26px;flex:0 0 auto}
+.tema-custom-info{flex:1;min-width:0}
+.tema-custom-info h4{font-size:15px;font-weight:800;color:var(--ink);margin:0 0 4px}
+.tema-custom-info p{font-size:12px;color:var(--mut);margin:0}
+.tema-custom-check{width:28px;height:28px;border-radius:50%;border:2px solid var(--gold);
+  flex:0 0 auto;display:flex;align-items:center;justify-content:center;
+  color:transparent;font-size:16px;font-weight:900;transition:.2s}
+.tema-custom.selected .tema-custom-check{background:var(--gold);color:#192524;border-color:var(--gold)}
+
+/* Actions */
+.tema-actions{display:flex;gap:10px;padding-top:18px;border-top:1px solid var(--line);
+  position:sticky;bottom:0;background:var(--card);margin:0 -24px -26px;padding:16px 24px;
+  border-radius:0 0 24px 24px}
+.tema-actions .btn{flex:1;padding:13px 16px}
+.tema-actions .btn-g[disabled],.tema-actions .btn-g[style*="pointer-events:none"]{
+  opacity:.5;cursor:not-allowed;transform:none!important;filter:grayscale(.3)}
+
+.tema-note{text-align:center;font-size:11.5px;color:var(--mut);margin-top:10px}
+
+/* =====================================================================
+   ✅ SHOWCASE TEMA DI SECTION #tema — Cover 2:3
+   ===================================================================== */
+.tema-card-cover{
+  aspect-ratio:2/3;
+  position:relative;
+  overflow:hidden;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:24px 18px;
+  transition:transform .6s cubic-bezier(.22,1,.36,1);
+}
+.card:hover .tema-card-cover{transform:scale(1.04);}
+.tema-card-cover::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,
+    rgba(15,24,23,.3) 0%,
+    rgba(15,24,23,.5) 50%,
+    rgba(15,24,23,.82) 100%);
+  z-index:1;pointer-events:none;
+}
+.tema-card-cover > *{position:relative;z-index:2;}
+.tema-card-cover .tc-eyebrow{
+  font-family:'Cormorant Garamond',serif;
+  font-size:10px;letter-spacing:.3em;text-transform:uppercase;
+  color:#fff;opacity:.85;margin-bottom:8px;
+  text-shadow:0 1px 4px rgba(0,0,0,.5);
+}
+.tema-card-cover .tc-couple{
+  font-family:'Cormorant Garamond',serif;
+  font-size:26px;font-weight:700;
+  color:#fff;line-height:1.15;
+  text-shadow:0 2px 10px rgba(0,0,0,.65);
+}
+.tema-card-cover .tc-star{
+  color:#E2C27F;margin:8px 0;font-size:14px;letter-spacing:.4em;
+}
+.tema-card-cover .tc-date{
+  font-size:10.5px;color:#fff;opacity:.8;margin-bottom:14px;
+  text-shadow:0 1px 4px rgba(0,0,0,.5);
+}
+.tema-card-cover .tc-cta{
+  display:inline-block;padding:6px 16px;border-radius:99px;
+  background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.4);
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  color:#fff;font-size:9px;font-weight:800;
+  letter-spacing:.12em;text-transform:uppercase;
+}
+
+@media(max-width:768px){
+  .modal-card{max-height:94vh;padding:20px 16px;border-radius:20px}
+  .paket-tabs{grid-template-columns:repeat(3,1fr);gap:6px}
+  .paket-tab{padding:10px 6px}
+  .paket-tab .pt-name{font-size:12px}
+  .paket-tab .pt-price{font-size:10px}
+  .tema-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .tema-preview .tp-couple{font-size:18px}
+  .tema-custom{flex-direction:column;text-align:center;gap:10px}
+  .tema-actions{margin:0 -16px -20px;padding:14px 16px;border-radius:0 0 20px 20px}
+  .modal-title{font-size:22px}
+}
+@media(max-width:400px){
+  .tema-grid{grid-template-columns:1fr}
+}
+
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal,.fade{opacity:1!important;transform:none!important}.petal-layer,.bloom-img,.spark,.corner-img,.fly,.butterfly,.hero-glow,.card-flower-img{display:none}}
+</style>
+</head>
+<body class="antialiased">
+<div id="prog"></div>
+
+<!-- NAVBAR -->
+<header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all" style="padding-top:env(safe-area-inset-top,0px)">
+  <div class="max-w-6xl mx-auto px-6 h-[68px] flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-2.5">
+      <img id="navLogo" src="img/Logo.png" alt="Ivolera Logo" class="logo-img w-20 h-20"
+           data-logo-light="img/Logo.png" data-logo-dark="img/Logo_light.png"
+           onerror="this.outerHTML='&lt;span class=\'logo-fallback\'&gt;&lt;svg width=\'20\' height=\'20\' viewBox=\'0 0 24 24\' fill=\'#E2C27F\'&gt;&lt;path d=\'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z\'/&gt;&lt;/svg&gt;&lt;/span&gt;'">
+    </a>
+    <nav class="hidden md:flex gap-8 text-sm font-semibold mut">
+      <a href="#fitur" class="hover:text-[var(--gold)]">Fitur</a><a href="#tema" class="hover:text-[var(--gold)]">Tema</a><a href="#harga" class="hover:text-[var(--gold)]">Harga</a><a href="#testimoni" class="hover:text-[var(--gold)]">Testimoni</a><a href="#faq" class="hover:text-[var(--gold)]">FAQ</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <button id="tt" class="tbtn" aria-label="Ganti tema"><span id="ti">🌙</span></button>
+      <button class="btn btn-p hidden sm:inline-flex !py-2.5 !px-4 text-[13px]" data-open-tema>Buat Undangan</button>
+      <button id="mt" class="tbtn md:hidden" aria-label="Menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+  <div id="mm" class="md:hidden border-t" style="background:var(--bg);border-color:var(--line)">
+    <nav class="px-6 py-4 flex flex-col text-sm font-semibold">
+      <a href="#fitur" class="ml py-2.5">Fitur</a><a href="#tema" class="ml py-2.5">Tema</a><a href="#harga" class="ml py-2.5">Harga</a><a href="#testimoni" class="ml py-2.5">Testimoni</a><a href="#faq" class="ml py-2.5">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="top" class="sec dots relative overflow-hidden min-h-[94vh] flex items-center" style="background-image:radial-gradient(70% 60% at 85% 20%,rgba(200,162,94,.16),transparent 60%),radial-gradient(60% 60% at 10% 10%,rgba(60,87,89,.14),transparent 60%)">
+  <div class="petal-layer" data-petals="10"></div>
+  <div class="hero-glow" style="width:400px;height:400px;background:rgba(200,162,94,.35);top:8%;right:6%"></div>
+  <div class="hero-glow" style="width:340px;height:340px;background:rgba(60,87,89,.28);bottom:6%;left:4%;animation-delay:4s"></div>
+  <div class="corner-img tl" aria-hidden="true" style="width:220px"><img src="img/flower_1.png" alt="" style="opacity:.3" onerror="this.parentElement.style.display='none'"></div>
+  <div class="bloom-img d1" style="top:22%;left:8%;width:90px"><img src="img/flower_3.png" alt="" onerror="this.parentElement.style.display='none'"></div>
+  <div class="spark" style="top:22%;left:12%"></div>
+  <div class="spark s2" style="top:60%;left:8%"></div>
+  <div class="spark s3" style="top:35%;right:14%"></div>
+  <div class="spark s4" style="bottom:20%;right:20%"></div>
+  <div class="butterfly" style="top:18%;right:32%">
+    <svg width="34" height="34" viewBox="0 0 40 40" fill="none">
+      <g class="wing"><ellipse cx="14" cy="20" rx="10" ry="13" fill="#C8A25E" opacity=".55"/></g>
+      <g class="wing" style="animation-delay:.1s"><ellipse cx="26" cy="20" rx="10" ry="13" fill="#E2C27F" opacity=".55"/></g>
+      <ellipse cx="20" cy="20" rx="2" ry="8" fill="#192524" opacity=".7"/>
+    </svg>
+  </div>
+  <div class="max-w-6xl mx-auto px-6 pt-28 pb-20 w-full grid lg:grid-cols-2 gap-12 items-center relative z-10">
+    <div class="text-center lg:text-left">
+      <span class="fade inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[11px] font-bold uppercase tracking-[.14em]" style="border-color:var(--line);background:var(--card)"><span class="w-1.5 h-1.5 rounded-full bg-[var(--gold)]"></span>Undangan Digital • Elegan &amp; Modern</span>
+      <h1 class="fade font-display font-bold text-[40px] sm:text-6xl leading-[1.05] mt-6" style="animation-delay:.1s">Undangan pernikahan <span class="acc">seindah</span> <span class="gold italic shimmer">momen bahagia</span> Anda.</h1>
+      <p class="fade mt-5 mut text-lg max-w-xl mx-auto lg:mx-0" style="animation-delay:.2s"><b style="color:var(--ink)">Ivolera</b> — desain elegan, fitur lengkap, harga <b class="acc">mulai Rp49.000</b>. Jadi dalam hitungan menit, tanpa keahlian desain.</p>
+      <div class="fade mt-8" style="animation-delay:.3s">
+        <div class="price-hero">
+          <div><p class="text-[10px] font-bold tracking-[.18em] uppercase text-[#E2C27F]">● Promo Terbatas</p><p class="text-[11px] text-white/60 mt-1">Harga spesial hari ini</p></div>
+          <div class="flex items-baseline gap-1"><span class="text-sm font-bold text-[#E2C27F]">Rp</span><span class="num">49</span><span class="text-sm font-bold text-[#E2C27F]">rb</span></div>
+          <div class="pl-3.5 border-l border-dashed border-white/30"><p class="text-[13px] line-through text-white/45 font-semibold">Rp99.000</p><span class="inline-block mt-1 text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-[#E2C27F] text-[#192524]">Hemat 50%</span></div>
+        </div>
+      </div>
+      <div class="fade mt-8 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start" style="animation-delay:.4s">
+        <button class="btn btn-p" data-open-tema>Mulai Buat Undangan →</button>
+        <a href="#tema" class="btn" style="border:1px solid var(--line);background:var(--card)">Lihat Tema</a>
+      </div>
+      <div class="fade mt-10 flex flex-wrap gap-x-10 gap-y-5 justify-center lg:justify-start" style="animation-delay:.5s">
+        <div><p class="font-display font-bold text-3xl" data-count="12500" data-suffix="+">0+</p><p class="text-xs mut uppercase tracking-wider">Undangan Dibuat</p></div>
+        <div><p class="font-display font-bold text-3xl" data-count="50" data-suffix="+">0+</p><p class="text-xs mut uppercase tracking-wider">Tema Eksklusif</p></div>
+        <div><p class="font-display font-bold text-3xl">4.9<span class="gold text-xl">★</span></p><p class="text-xs mut uppercase tracking-wider">Rating</p></div>
+      </div>
+    </div>
+    <div class="hidden lg:flex justify-center relative">
+      <div class="absolute w-[420px] h-[420px] rounded-full bg-[#C8A25E]/25 blur-[70px] top-10"></div>
+      <div class="float relative">
+        <div class="w-[290px] h-[540px] rounded-[38px] border-[9px] border-[#192524] shadow-2xl overflow-hidden relative" style="transform:rotate(-3deg);background:linear-gradient(170deg,#243634,#0F1817)">
+          <div class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-[#192524] rounded-b-2xl z-10"></div>
+          <div class="absolute -top-4 -left-4 pointer-events-none" style="width:100px;opacity:.85;animation:cfSway 6s ease-in-out infinite"><img src="img/flower_3.png" alt="" style="width:100%;height:auto;background:transparent" onerror="this.style.display='none'"></div>
+          <div class="absolute -bottom-4 -right-4 pointer-events-none" style="width:100px;opacity:.85;transform:scaleX(-1);animation:cfSway 6s ease-in-out infinite;animation-delay:1.5s"><img src="img/flower_2.png" alt="" style="width:100%;height:auto;background:transparent" onerror="this.style.display='none'"></div>
+          <div class="h-full flex flex-col items-center justify-center text-center p-6 text-[#EFECE9] relative z-10">
+            <div class="w-16 h-16 rounded-full border border-[#C8A25E] flex items-center justify-center mb-4">
+              <img src="img/Logo_light.png" alt="Logo" style="width:32px;height:32px;object-fit:contain" onerror="this.outerHTML='&lt;svg width=\'26\' height=\'26\' viewBox=\'0 0 24 24\' fill=\'#E2C27F\'&gt;&lt;path d=\'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z\'/&gt;&lt;/svg&gt;'">
+            </div>
+            <p class="font-display text-xs tracking-[.3em] uppercase text-[#E2C27F]">The Wedding Of</p>
+            <h3 class="font-display font-bold text-3xl mt-2">Raka &amp; Sinta</h3>
+            <p class="text-[#C8A25E] my-3">✦ ✦ ✦</p>
+            <p class="text-[11px] text-white/60">Sabtu, 14 Juni 2026</p><p class="text-[11px] text-white/60">Gedung Serbaguna, Jakarta</p>
+            <div class="mt-7 px-5 py-2 rounded-full bg-[#C8A25E] text-[#192524] text-[10px] font-extrabold tracking-wider">BUKA UNDANGAN</div>
+          </div>
+        </div>
+        <div class="absolute top-[16%] -left-16 flex items-center gap-2 rounded-2xl px-3.5 py-2.5 shadow-xl float" style="background:var(--card);border:1px solid var(--line)"><span class="w-7 h-7 rounded-lg bg-[#D1EBDB] text-[#192524] flex items-center justify-center text-xs">✓</span><div class="leading-tight"><p class="text-[11px] font-bold">Desain Elegan</p><p class="text-[10px] mut">Siap Pakai</p></div></div>
+        <div class="absolute bottom-[20%] -left-20 flex items-center gap-2 rounded-2xl px-3.5 py-2.5 shadow-xl float" style="background:var(--card);border:2px solid var(--gold);animation-delay:1.5s"><span class="w-7 h-7 rounded-lg bg-[#192524] text-[#E2C27F] flex items-center justify-center text-xs">★</span><div class="leading-tight"><p class="text-[11px] font-bold">Mulai Rp49rb</p><p class="text-[10px] mut">Sekali Bayar</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FITUR -->
+<section id="fitur" class="sec sd dots overflow-hidden">
+  <div class="max-w-6xl mx-auto px-6 py-24 relative z-10">
+    <div class="max-w-xl reveal"><p class="eyebrow">Fitur Unggulan</p><h2 class="h2">Semua yang Anda butuhkan untuk undangan sempurna</h2><p class="mt-3 mut">Dari desain elegan hingga fitur canggih — dalam satu aplikasi.</p></div>
+    <div class="mt-14 grid md:grid-cols-3 gap-6">
+      <div class="card p-8 reveal" style="position:relative;overflow:hidden"><div class="card-flower-img" style="top:-12px;left:-12px;width:56px"><img src="img/flower_3.png" alt="" onerror="this.parentElement.style.display='none'"></div><div class="ico">♥</div><h3 class="font-display font-bold text-xl mt-5">Desain Elegan &amp; Menenangkan</h3><p class="mt-2 text-sm mut leading-relaxed">Puluhan tema eksklusif — klasik, modern, floral, hingga minimalis.</p></div>
+      <div class="card p-8 reveal" style="position:relative;overflow:hidden"><div class="card-flower-img" style="top:-12px;right:-12px;width:52px;animation-delay:.8s"><img src="img/flower_2.png" alt="" style="transform:scaleX(-1)" onerror="this.parentElement.style.display='none'"></div><div class="ico">▤</div><h3 class="font-display font-bold text-xl mt-5">Fitur Lengkap</h3><p class="mt-2 text-sm mut leading-relaxed">RSVP online, amplop digital, galeri foto, countdown, musik latar, dan Google Maps.</p></div>
+      <div class="card p-8 reveal" style="position:relative;overflow:hidden"><div class="card-flower-img" style="bottom:-12px;right:-12px;width:50px;animation-delay:1.5s"><img src="img/flower_1.png" alt="" onerror="this.parentElement.style.display='none'"></div><div class="ico">Rp</div><h3 class="font-display font-bold text-xl mt-5">Harga Terjangkau</h3><p class="mt-2 text-sm mut leading-relaxed">Mulai Rp49.000 sekali bayar — tanpa biaya bulanan, tanpa batasan tamu.</p></div>
+      <div class="card p-8 reveal"><div class="ico">⚡</div><h3 class="font-display font-bold text-xl mt-5">Mudah Digunakan</h3><p class="mt-2 text-sm mut leading-relaxed">Isi data, pilih tema, undangan siap dibagikan. Tanpa keahlian desain.</p></div>
+      <div class="card p-8 reveal"><div class="ico">✉</div><h3 class="font-display font-bold text-xl mt-5">RSVP &amp; Ucapan</h3><p class="mt-2 text-sm mut leading-relaxed">Tamu konfirmasi kehadiran dan kirim ucapan langsung dari undangan.</p></div>
+      <div class="card p-8 reveal"><div class="ico">🎁</div><h3 class="font-display font-bold text-xl mt-5">Amplop Digital</h3><p class="mt-2 text-sm mut leading-relaxed">Terima hadiah langsung ke rekening atau e-wallet tanpa ribet.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TEMA — 4 kartu cover image 2:3 (di-render oleh JS)
+     ============================================================ -->
+<section id="tema" class="sec overflow-hidden">
+  <div class="petal-layer" data-petals="6"></div>
+  <div class="corner-img tr" style="width:150px;opacity:.7"><img src="img/flower_3.png" alt="" onerror="this.parentElement.style.display='none'"></div>
+  <div class="bloom-img d3" style="bottom:8%;left:4%;width:80px"><img src="img/flower_2.png" alt="" onerror="this.parentElement.style.display='none'"></div>
+  <div class="max-w-6xl mx-auto px-6 py-24 relative z-10">
+    <div class="max-w-xl reveal"><p class="eyebrow">Galeri Tema</p><h2 class="h2">Pilih tema yang paling mencerminkan kisah Anda</h2><p class="mt-3 mut">Setiap tema dirancang detail — siap pakai dan bisa dikustomisasi.</p></div>
+    <!-- Grid tema di-render JS (lihat renderTemaShowcase) -->
+    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-6" id="temaShowcase"></div>
+    <div class="mt-10 text-center">
+      <a href="preview.html" class="btn" style="border:1px solid var(--line);background:var(--card)">Lihat semua tema →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CARA KERJA -->
+<section class="sec sm overflow-hidden">
+  <div class="bloom-img d1" style="top:12%;right:6%;width:75px"><img src="img/flower_2.png" alt="" onerror="this.parentElement.style.display='none'"></div>
+  <div class="bloom-img d4" style="bottom:10%;left:5%;width:70px"><img src="img/flower_1.png" alt="" onerror="this.parentElement.style.display='none'"></div>
+  <div class="max-w-6xl mx-auto px-6 py-20 relative z-10">
+    <div class="text-center reveal"><p class="eyebrow" style="color:#2A3F41">Cara Kerja</p><h2 class="h2">Jadi dalam 3 langkah mudah</h2><div class="orn-line"><span class="orn-star">✦</span></div></div>
+    <div class="mt-12 grid md:grid-cols-3 gap-6">
+      <div class="card p-8 text-center reveal" style="position:relative"><div class="mx-auto w-14 h-14 rounded-full bg-[#192524] text-[#E2C27F] font-display font-bold text-2xl flex items-center justify-center relative">1<span class="ping-ring"></span></div><h3 class="font-display font-bold text-xl mt-4">Pilih Paket &amp; Tema</h3><p class="text-sm mut mt-2">Tentukan paket dan tema favorit Anda.</p></div>
+      <div class="card p-8 text-center reveal" style="position:relative"><div class="mx-auto w-14 h-14 rounded-full bg-[#192524] text-[#E2C27F] font-display font-bold text-2xl flex items-center justify-center relative">2<span class="ping-ring" style="animation-delay:.6s"></span></div><h3 class="font-display font-bold text-xl mt-4">Isi Data &amp; Foto</h3><p class="text-sm mut mt-2">Masukkan nama, tanggal, lokasi, galeri, dan musik.</p></div>
+      <div class="card p-8 text-center reveal" style="position:relative"><div class="mx-auto w-14 h-14 rounded-full bg-[#192524] text-[#E2C27F] font-display font-bold text-2xl flex items-center justify-center relative">3<span class="ping-ring" style="animation-delay:1.2s"></span></div><h3 class="font-display font-bold text-xl mt-4">Bagikan ke Tamu</h3><p class="text-sm mut mt-2">Kirim link via WhatsApp atau media sosial.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HARGA -->
+<section id="harga" class="sec overflow-hidden" style="background:var(--bg2)">
+  <div class="max-w-6xl mx-auto px-6 py-24 relative z-10">
+    <div class="max-w-xl mx-auto text-center reveal"><p class="eyebrow">Harga Spesial</p><h2 class="h2">Pilih paket yang sesuai kebutuhan Anda</h2><p class="mt-3 mut">Harga transparan, tanpa biaya tersembunyi. Sekali bayar, aktif selamanya.</p></div>
+    <div class="mt-10 flex flex-col items-center reveal">
+      <p class="text-xs font-bold uppercase tracking-wider gold mb-3">Promo berakhir dalam</p>
+      <div class="flex items-center gap-2 sm:gap-3">
+        <div class="cd"><p class="font-display font-bold text-xl" id="cd-d">02</p><p class="text-[9px] text-[#D1EBDB]/70 uppercase">Hari</p></div><b class="gold">:</b>
+        <div class="cd"><p class="font-display font-bold text-xl" id="cd-h">18</p><p class="text-[9px] text-[#D1EBDB]/70 uppercase">Jam</p></div><b class="gold">:</b>
+        <div class="cd"><p class="font-display font-bold text-xl" id="cd-m">45</p><p class="text-[9px] text-[#D1EBDB]/70 uppercase">Menit</p></div><b class="gold">:</b>
+        <div class="cd"><p class="font-display font-bold text-xl" id="cd-s">30</p><p class="text-[9px] text-[#D1EBDB]/70 uppercase">Detik</p></div>
+      </div>
+    </div>
+    <div class="mt-14 grid md:grid-cols-3 gap-6 items-center">
+      <div class="card p-8 relative overflow-hidden reveal"><div class="ribbon">PROMO</div><p class="text-xs font-bold uppercase tracking-wider mut">Basic</p><p class="mt-4 text-5xl font-extrabold tracking-tight"><span class="text-lg acc">Rp</span>49<span class="text-base acc">rb</span></p><p class="text-xs mut mt-2"><s>Rp99.000</s> <span class="ml-2 px-2 py-0.5 rounded-full bg-[#D1EBDB] text-[#192524] font-bold text-[10px]">Hemat 50%</span></p><p class="text-sm mut mt-3">Untuk undangan simpel namun elegan.</p><ul class="mt-6 space-y-3 text-sm mut"><li>✓ 1 tema pilihan</li><li>✓ RSVP online</li><li>✓ Countdown &amp; lokasi</li><li>✓ Masa aktif selamanya</li></ul><button class="btn btn-p w-full mt-8" data-open-tema data-paket="basic">Pilih Paket — Rp49rb</button></div>
+      <div class="pop rounded-3xl p-9 relative reveal md:scale-105"><span class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-[#C8A25E] text-[#192524] text-[10px] font-extrabold uppercase tracking-wider z-10">★ Paling Populer</span><p class="text-xs font-bold uppercase tracking-wider text-[#E2C27F] mt-2 relative z-10">Premium</p><p class="mt-4 text-6xl font-extrabold tracking-tight relative z-10" style="background:linear-gradient(135deg,#fff,#E2C27F);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent"><span class="text-xl">Rp</span>99<span class="text-lg">rb</span></p><p class="text-xs text-white/50 mt-2 relative z-10"><s>Rp199.000</s> <span class="ml-2 px-2 py-0.5 rounded-full bg-[#C8A25E] text-[#192524] font-bold text-[10px]">Hemat 50%</span></p><p class="text-sm text-white/65 mt-3 relative z-10">Fitur lengkap untuk undangan berkesan.</p><ul class="mt-6 space-y-3 text-sm text-white/80 relative z-10"><li>✓ <b>Semua tema</b> (50+)</li><li>✓ RSVP + Ucapan &amp; Doa</li><li>✓ Amplop digital</li><li>✓ Galeri foto (20 foto)</li><li>✓ Musik latar</li><li>✓ Custom nama tamu</li></ul><button class="btn btn-g w-full mt-8 relative z-10" data-open-tema data-paket="premium">Pilih Paket Premium</button></div>
+      <div class="card p-8 reveal" style="position:relative;overflow:hidden"><p class="text-xs font-bold uppercase tracking-wider acc">Exclusive</p><p class="mt-4 text-5xl font-extrabold tracking-tight"><span class="text-lg acc">Rp</span>199<span class="text-base acc">rb</span></p><p class="text-xs mut mt-2"><s>Rp399.000</s> <span class="ml-2 px-2 py-0.5 rounded-full bg-[#3C5759] text-[#D1EBDB] font-bold text-[10px]">Hemat 50%</span></p><p class="text-sm mut mt-3">Pengalaman undangan paling mewah &amp; personal.</p><ul class="mt-6 space-y-3 text-sm mut"><li>✓ <b>Semua fitur Premium</b></li><li>✓ Domain kustom (namaanda.com)</li><li>✓ Video sinematik</li><li>✓ Desain custom oleh tim kami</li><li>✓ Prioritas support 24/7</li></ul><button class="btn w-full mt-8" style="border:1.5px solid var(--acc);color:var(--acc)" data-open-tema data-paket="exclusive">Pilih Paket</button></div>
+    </div>
+    <p class="mt-10 text-center text-xs mut reveal">*Harga dapat berubah sewaktu-waktu. Promo berlaku untuk pemesanan pertama.</p>
+  </div>
+</section>
+
+<!-- TESTIMONI -->
+<section id="testimoni" class="sec sx dots overflow-hidden">
+  <div class="petal-layer" data-petals="6"></div>
+  <div class="corner-img tr" style="width:150px;opacity:.65"><img src="img/flower_2.png" alt="" onerror="this.parentElement.style.display='none'"></div>
+  <div class="bloom-img d2" style="bottom:12%;left:5%;width:80px"><img src="img/flower_1.png" alt="" onerror="this.parentElement.style.display='none'"></div>
+  <div class="max-w-6xl mx-auto px-6 py-24 relative z-10">
+    <div class="max-w-xl mx-auto text-center reveal"><p class="eyebrow">Testimoni</p><h2 class="h2">Dipercaya ribuan pasangan</h2><p class="mt-3 mut">Cerita nyata dari pengguna Ivolera.</p></div>
+    <div class="mt-12 grid md:grid-cols-3 gap-6">
+      <div class="card p-8 reveal"><p class="gold tracking-widest">★★★★★</p><p class="mt-4 text-sm leading-relaxed" style="color:var(--mut)">"Undangannya cantik banget! Banyak tamu bilang elegan dan mudah dibuka. Prosesnya cuma 10 menit."</p><div class="mt-5 flex items-center gap-3"><span class="w-10 h-10 rounded-full bg-[#C8A25E] text-[#192524] font-bold text-xs flex items-center justify-center">RA</span><div><p class="text-sm font-bold">Rina &amp; Adit</p><p class="text-xs mut">Jakarta</p></div></div></div>
+      <div class="card p-8 reveal"><p class="gold tracking-widest">★★★★★</p><p class="mt-4 text-sm leading-relaxed" style="color:var(--mut)">"Fitur RSVP-nya sangat membantu. Kami tahu siapa yang hadir tanpa telepon satu-satu. Recommended!"</p><div class="mt-5 flex items-center gap-3"><span class="w-10 h-10 rounded-full bg-[#D1EBDB] text-[#192524] font-bold text-xs flex items-center justify-center">BS</span><div><p class="text-sm font-bold">Budi &amp; Sari</p><p class="text-xs mut">Bandung</p></div></div></div>
+      <div class="card p-8 reveal"><p class="gold tracking-widest">★★★★★</p><p class="mt-4 text-sm leading-relaxed" style="color:var(--mut)">"Harga 99 ribu fitur selengkap ini? Worth it! Amplop digitalnya memudahkan tamu yang jauh."</p><div class="mt-5 flex items-center gap-3"><span class="w-10 h-10 rounded-full bg-[#3C5759] text-[#D1EBDB] font-bold text-xs flex items-center justify-center">DP</span><div><p class="text-sm font-bold">Dian &amp; Putra</p><p class="text-xs mut">Surabaya</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="sec overflow-hidden">
+  <div class="petal-layer" data-petals="4"></div>
+  <div class="bloom-img d1" style="top:8%;right:4%;width:70px"><img src="img/flower_3.png" alt="" onerror="this.parentElement.style.display='none'"></div>
+  <div class="max-w-3xl mx-auto px-6 py-24 relative z-10">
+    <div class="text-center reveal"><p class="eyebrow">FAQ</p><h2 class="h2">Pertanyaan yang sering diajukan</h2><div class="orn-line"><span class="orn-star">✦</span></div></div>
+    <div class="mt-12 space-y-4">
+      <details class="card overflow-hidden reveal"><summary class="flex justify-between items-center p-6 cursor-pointer list-none font-semibold text-sm">Berapa lama proses pembuatan undangan?<span class="chev gold">▾</span></summary><div class="px-6 pb-6 text-sm mut leading-relaxed">Hanya 5–15 menit! Setelah pembayaran, isi data, pilih tema, dan undangan siap dibagikan.</div></details>
+      <details class="card overflow-hidden reveal"><summary class="flex justify-between items-center p-6 cursor-pointer list-none font-semibold text-sm">Apakah ada biaya bulanan?<span class="chev gold">▾</span></summary><div class="px-6 pb-6 text-sm mut leading-relaxed">Tidak ada! Harga sekali bayar, undangan aktif selamanya tanpa biaya tambahan.</div></details>
+      <details class="card overflow-hidden reveal"><summary class="flex justify-between items-center p-6 cursor-pointer list-none font-semibold text-sm">Bisakah mengubah data setelah undangan jadi?<span class="chev gold">▾</span></summary><div class="px-6 pb-6 text-sm mut leading-relaxed">Tentu! Edit kapan saja lewat dashboard. Perubahan langsung terlihat tanpa biaya tambahan.</div></details>
+      <details class="card overflow-hidden reveal"><summary class="flex justify-between items-center p-6 cursor-pointer list-none font-semibold text-sm">Bagaimana cara membagikan undangan?<span class="chev gold">▾</span></summary><div class="px-6 pb-6 text-sm mut leading-relaxed">Anda mendapat link unik untuk dibagikan via WhatsApp, Instagram, atau media sosial lain. Bisa custom nama tamu.</div></details>
+      <details class="card overflow-hidden reveal"><summary class="flex justify-between items-center p-6 cursor-pointer list-none font-semibold text-sm">Apakah ada batasan jumlah tamu?<span class="chev gold">▾</span></summary><div class="px-6 pb-6 text-sm mut leading-relaxed">Tidak ada batasan. Sebanyak apa pun tamu, tanpa biaya tambahan.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="sec sx relative overflow-hidden" style="background:radial-gradient(60% 120% at 80% 0%,rgba(200,162,94,.28),transparent 60%),linear-gradient(135deg,#3C5759,#192524 60%,#0F1817)">
+  <div class="petal-layer" data-petals="10"></div>
+  <div class="corner-img bl" style="width:170px;opacity:.75"><img src="img/flower_3.png" alt="" onerror="this.parentElement.style.display='none'"></div>
+  <div class="corner-img br" style="width:160px;opacity:.75;transform:scaleX(-1) rotate(0deg)"><img src="img/flower_1.png" alt="" onerror="this.parentElement.style.display='none'"></div>
+  <div class="spark" style="top:18%;left:12%"></div>
+  <div class="spark s2" style="bottom:22%;right:16%"></div>
+  <div class="spark s3" style="top:40%;right:8%"></div>
+  <div class="max-w-6xl mx-auto px-6 py-24 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left reveal relative z-10">
+    <div><h2 class="font-display font-bold text-4xl sm:text-5xl text-white">Siap buat undangan <span class="italic text-[#E2C27F]">impianmu?</span></h2><p class="mt-3 text-white/70">Mulai dari Rp49.000 — undangan digital elegan dalam hitungan menit.</p></div>
+    <button class="btn btn-g shrink-0 !px-9 !py-5 text-lg" data-open-tema>Mulai Buat Undangan →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="kontak" class="sec sx overflow-hidden">
+  <div class="petal-layer" data-petals="4"></div>
+  <div class="bloom-img d3" style="top:10%;right:5%;width:60px;opacity:.5"><img src="img/flower_2.png" alt="" onerror="this.parentElement.style.display='none'"></div>
+  <div class="max-w-6xl mx-auto px-6 py-16 grid sm:grid-cols-2 md:grid-cols-4 gap-10 relative z-10">
+    <div>
+      <div class="flex items-center gap-3 mb-3">
+        <img src="img/Logo_light.png" alt="Ivolera Logo" class="logo-lg w-20 h-20" onerror="this.outerHTML='&lt;span style=\'width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,#3C5759,#192524);display:flex;align-items:center;justify-content:center\'&gt;&lt;svg width=\'24\' height=\'24\' viewBox=\'0 0 24 24\' fill=\'#E2C27F\'&gt;&lt;path d=\'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z\'/&gt;&lt;/svg&gt;&lt;/span&gt;'">
+      </div>
+      <p class="text-sm mut leading-relaxed">Aplikasi undangan pernikahan digital dengan desain elegan, fitur lengkap, dan harga terjangkau.</p>
+    </div>
+    <div><h4 class="font-bold text-sm">Produk</h4><ul class="mt-4 space-y-2 text-sm mut"><li><a href="#fitur" class="hover:text-[var(--gold)]">Fitur</a></li><li><a href="#tema" class="hover:text-[var(--gold)]">Galeri Tema</a></li><li><a href="#harga" class="hover:text-[var(--gold)]">Harga</a></li></ul></div>
+    <div><h4 class="font-bold text-sm">Perusahaan</h4><ul class="mt-4 space-y-2 text-sm mut"><li><a href="#testimoni" class="hover:text-[var(--gold)]">Testimoni</a></li><li><a href="#faq" class="hover:text-[var(--gold)]">FAQ</a></li><li><a href="#" class="hover:text-[var(--gold)]">Blog</a></li></ul></div>
+    <div><h4 class="font-bold text-sm">Kontak</h4><ul class="mt-4 space-y-2 text-sm mut"><li>hello@ivolera.com</li><li>0812-3456-7890</li></ul></div>
+  </div>
+  <div class="max-w-6xl mx-auto px-6 pb-8 relative z-10"><div class="pt-6 border-t text-xs mut" style="border-color:var(--line)">© 2026 Ivolera — Undangan Pernikahan Digital. Seluruh hak cipta dilindungi.</div></div>
+</footer>
+
+<!-- =====================================================================
+     MODAL PILIH TEMA (paket bisa diganti di dalam modal)
+     ===================================================================== -->
+<div class="modal-mask" id="temaModal" role="dialog" aria-modal="true" aria-labelledby="temaTitle">
+  <div class="modal-card">
+    <button class="modal-x" id="temaClose" aria-label="Tutup">✕</button>
+
+    <h3 class="modal-title" id="temaTitle">Pilih Paket &amp; Tema Undangan</h3>
+    <p class="modal-sub">Pilih paket, lalu klik tema favorit Anda. Hover tema untuk lihat demo.</p>
+
+    <!-- Tabs paket -->
+    <div class="paket-tabs" id="paketTabs" role="tablist">
+      <button type="button" class="paket-tab" data-paket="basic" role="tab">
+        <span class="pt-name">Basic</span>
+        <span class="pt-price">Rp49rb</span>
+      </button>
+      <button type="button" class="paket-tab active" data-paket="premium" role="tab">
+        <span class="pt-name">★ Premium</span>
+        <span class="pt-price">Rp99rb</span>
+      </button>
+      <button type="button" class="paket-tab" data-paket="exclusive" role="tab">
+        <span class="pt-name">Exclusive</span>
+        <span class="pt-price">Rp199rb</span>
+      </button>
+    </div>
+
+    <!-- Info paket aktif -->
+    <div class="paket-info">
+      <div>
+        <div class="paket-info-label">Paket dipilih</div>
+        <div class="paket-info-desc" id="paketDesc">Semua tema, amplop digital, galeri 20 foto</div>
+      </div>
+      <div class="paket-info-price" id="paketPriceInfo">Rp99.000</div>
+    </div>
+
+    <!-- Grid tema -->
+    <div class="tema-grid" id="temaGrid"></div>
+
+    <!-- Tombol aksi -->
+    <div class="tema-actions">
+      <button type="button" class="btn" id="temaCancel"
+        style="border:1px solid var(--line);background:var(--bg2);color:var(--ink)">Batal</button>
+      <button type="button" class="btn btn-g" id="temaGo" disabled>
+        Lanjutkan ke Isi Data →
+      </button>
+    </div>
+
+    <p class="tema-note">Data akan dikirim ke admin untuk konfirmasi &amp; pembayaran via WhatsApp.</p>
+  </div>
+</div>
+
+<!-- CHATBOT -->
+<div id="chatbot">
+  <div id="cp" role="dialog" aria-label="Chat Ivolera">
+    <div class="flex items-center gap-3 p-4 text-white" style="background:linear-gradient(135deg,#192524,#0F1817)">
+      <span class="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(255,255,255,.12)">
+        <img src="img/Logo_light.png" alt="Ivolera" style="width:32px;height:32px;object-fit:contain" onerror="this.outerHTML='💬'">
+      </span>
+      <div class="flex-1">
+        <p class="text-sm font-bold leading-tight">Ivolera Assistant</p>
+        <p class="text-[11px] text-white/60">● Online · Siap membantu</p>
+      </div>
+      <button id="cc" type="button" aria-label="Tutup" class="w-8 h-8 rounded-full hover:bg-white/10 flex items-center justify-center" style="color:white">✕</button>
+    </div>
+    <div id="cm"></div>
+    <form id="cf" autocomplete="off" class="flex gap-2 p-3 border-t" style="border-color:var(--line)">
+      <input id="ci" maxlength="300" placeholder="Tulis pertanyaan..." aria-label="Tulis pesan" class="flex-1 px-4 py-2.5 rounded-full text-sm outline-none" style="background:var(--card);border:1px solid var(--line);color:var(--ink)">
+      <button type="submit" aria-label="Kirim" class="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0" style="background:#3C5759;color:white">
+        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+      </button>
+    </form>
+  </div>
+  <button id="ct" type="button" aria-label="Buka chat" aria-expanded="false">
+    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/><path d="M8 10h.01"/><path d="M12 10h.01"/><path d="M16 10h.01"/></svg>
+    <span id="cb" class="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full bg-[#D1EBDB] text-[#192524] text-[9px] font-bold flex items-center justify-center">1</span>
+  </button>
+</div>
+
+<!-- SCRIPT UTAMA -->
+<script>
+const $=id=>document.getElementById(id),root=document.documentElement;
+const FLOWER_IMGS=['img/flower_1.png','img/flower_2.png','img/flower_3.png'];
+
+/* Slug demo — dipakai untuk tombol "Lihat Demo" di modal tema & kartu showcase.
+   Harus terdaftar di DEMO_SLUGS backend Apps Script. */
+const DEMO_INVITE = 'mila-arlo';
+
+/* =====================================================================
+   ✅ HELPER COVER TEMA — path gambar & fallback gradient
+   ===================================================================== */
+const TEMA_COVER_PATH = 'img/';      // ← ganti 'img/tema/' kalau pakai subfolder
+const TEMA_COVER_EXT  = '.jpeg';     // ← sesuai request: .jpeg
+function temaCoverUrl(temaId){
+  return TEMA_COVER_PATH + temaId + TEMA_COVER_EXT;
+}
+
+/* Fallback otomatis: kalau gambar gagal load, ganti jadi gradient */
+function attachCoverFallback(root){
+  root.querySelectorAll('.tema-preview, .tema-card-cover').forEach(el => {
+    const bg = el.style.backgroundImage;
+    if(!bg || bg === 'none') return;
+    const m = bg.match(/url\(["']?(.*?)["']?\)/);
+    if(!m) return;
+    const img = new Image();
+    img.onerror = () => {
+      // Ambil fallback gradient dari data attribute atau default
+      const fb = el.dataset.fallback || 'linear-gradient(180deg,#3C5759,#192524)';
+      el.style.backgroundImage = fb;
+    };
+    img.src = m[1];
+  });
+}
+
+function swapNavLogo(isDark){
+  const navLogo=$('navLogo'); if(!navLogo) return;
+  const target=isDark?navLogo.dataset.logoDark:navLogo.dataset.logoLight;
+  if(target && navLogo.src.indexOf(target)===-1) navLogo.src=target;
+}
+function ap(t){
+  const isDark=(t==='dark');
+  root.classList.toggle('dark',isDark);
+  const ti=$('ti'); if(ti) ti.textContent=isDark?'☀️':'🌙';
+  swapNavLogo(isDark);
+  try{localStorage.setItem('ivolera-theme',t)}catch(e){}
+}
+let st=null;try{st=localStorage.getItem('ivolera-theme')}catch(e){}
+ap(st||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+$('tt').onclick=()=>ap(root.classList.contains('dark')?'light':'dark');
+
+function os(){const y=scrollY;$('nav').classList.toggle('sc',y>16);const h=root.scrollHeight-innerHeight;$('prog').style.width=h>0?y/h*100+'%':'0'}
+addEventListener('scroll',os,{passive:true});os();
+
+$('mt').onclick=()=>{const o=$('mm').classList.toggle('open');$('mt').setAttribute('aria-expanded',o);$('mt').textContent=o?'✕':'☰'};
+document.querySelectorAll('.ml').forEach(l=>l.onclick=()=>{$('mm').classList.remove('open');$('mt').textContent='☰'});
+
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');ro.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(e=>ro.observe(e));
+
+const co=new IntersectionObserver(es=>es.forEach(en=>{if(!en.isIntersecting)return;const el=en.target,t=+el.dataset.count,s=el.dataset.suffix||'',t0=performance.now();
+(function k(n){const p=Math.min((n-t0)/1300,1);el.textContent=Math.floor((1-Math.pow(1-p,3))*t).toLocaleString('id-ID')+s;if(p<1)requestAnimationFrame(k)})(t0);co.unobserve(el)}),{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(e=>co.observe(e));
+
+function cd(){const n=new Date(),e=new Date(n);e.setDate(e.getDate()+2);e.setHours(23,59,59,0);const d=e-n;if(d<=0)return;
+const v={d:Math.floor(d/864e5),h:Math.floor(d%864e5/36e5),m:Math.floor(d%36e5/6e4),s:Math.floor(d%6e4/1e3)};
+for(const k in v){const el=$('cd-'+k);if(el)el.textContent=String(v[k]).padStart(2,'0')}}
+cd();setInterval(cd,1000);
+
+(function(){
+  document.querySelectorAll('.petal-layer').forEach(layer=>{
+    const count=parseInt(layer.dataset.petals||6,10);
+    for(let i=0;i<count;i++){
+      const p=document.createElement('div');
+      p.className='petal-img p'+(2+(i%4));
+      p.style.left=(Math.random()*100)+'%';
+      p.style.width=(22+Math.random()*22)+'px';
+      p.style.animationDuration=(11+Math.random()*9)+'s';
+      p.style.animationDelay=(Math.random()*12)+'s';
+      p.innerHTML=`<img src="${FLOWER_IMGS[i%FLOWER_IMGS.length]}" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">`;
+      layer.appendChild(p);
+    }
+  });
+})();
+
+/* =====================================================================
+   ✅ SHOWCASE TEMA DI SECTION #tema — cover image 2:3
+   ===================================================================== */
+(function renderTemaShowcase(){
+  const wrap = $('temaShowcase');
+  if(!wrap) return;
+
+  const SHOWCASE = [
+    { id:'sage-elegance',  name:'Sage Elegance',  desc:'Klasik • Natural',   bride:'Raka & Sinta',  date:'14 Juni 2026',
+      fallback:'linear-gradient(180deg,#D1EBDB,#EFECE9)' },
+    { id:'deep-teal',      name:'Deep Teal',      desc:'Mewah • Klasik',     bride:'Dimas & Ayu',   date:'20 Juli 2026',
+      fallback:'linear-gradient(180deg,#3C5759,#192524)' },
+    { id:'forest-royale',  name:'Forest Royale',  desc:'Elegan • Bold',      bride:'Bagas & Nadia', date:'5 Agustus 2026',
+      fallback:'linear-gradient(180deg,#0F1817,#243634)' },
+    { id:'golden-cream',   name:'Golden Cream',   desc:'Modern • Hangat',    bride:'Fajar & Dewi',  date:'12 September 2026',
+      fallback:'linear-gradient(180deg,#FAF3E3,#E8D5A8)' }
+  ];
+
+  wrap.innerHTML = SHOWCASE.map(t => `
+    <a class="card overflow-hidden reveal text-left"
+       href="inv.html?invite=${DEMO_INVITE}&tema=${t.id}"
+       target="_blank" rel="noopener"
+       style="cursor:pointer;padding:0;text-decoration:none;color:inherit">
+      <div class="tema-card-cover"
+           data-fallback="${t.fallback}"
+           style="background-image:url('${temaCoverUrl(t.id)}'), ${t.fallback};">
+        <div>
+          <div class="tc-eyebrow">The Wedding Of</div>
+          <h3 class="tc-couple">${t.bride}</h3>
+          <p class="tc-star">✦ ✦ ✦</p>
+          <p class="tc-date">${t.date}</p>
+          <span class="tc-cta">Lihat Demo</span>
+        </div>
+      </div>
+      <div class="p-4 border-t" style="border-color:var(--line)">
+        <p class="font-display font-bold">${t.name}</p>
+        <p class="text-xs mut">${t.desc}</p>
+      </div>
+    </a>
+  `).join('');
+
+  attachCoverFallback(wrap);
+  wrap.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+})();
+
+/* =====================================================================
+   MODAL PILIH TEMA — paket & tema sekaligus
+   ===================================================================== */
+(function(){
+  const modal = $('temaModal');
+  if(!modal) return;
+
+  const PAKET_MAP = {
+    basic:     { name:'Basic',     price:'Rp49.000',  priceNum:49000,  desc:'1 tema pilihan, RSVP, countdown, aktif selamanya' },
+    premium:   { name:'Premium',   price:'Rp99.000',  priceNum:99000,  desc:'Semua tema, amplop digital, galeri 20 foto, musik' },
+    exclusive: { name:'Exclusive', price:'Rp199.000', priceNum:199000, desc:'Semua fitur Premium + domain kustom + desain custom' }
+  };
+
+  const TEMAS = [
+    // BASIC
+    { id:'sage-elegance',  name:'Sage Elegance',  desc:'Klasik · Natural',  tier:'basic',   bg:'linear-gradient(180deg,#D1EBDB,#EFECE9)', deco:'🌿' },
+    { id:'deep-teal',      name:'Deep Teal',      desc:'Mewah · Klasik',    tier:'basic',   bg:'linear-gradient(180deg,#3C5759,#192524)', deco:'✦' },
+    { id:'rose-blush',     name:'Rose Blush',     desc:'Feminin · Lembut',  tier:'basic',   bg:'linear-gradient(180deg,#F4D7DD,#E8B4C0)', deco:'🌸' },
+    { id:'lavender-dream', name:'Lavender Dream', desc:'Tenang · Elegan',   tier:'basic',   bg:'linear-gradient(180deg,#E4DBF0,#C9B8E0)', deco:'💜' },
+    // PREMIUM
+    { id:'forest-royale',  name:'Forest Royale',  desc:'Elegan · Bold',     tier:'premium', bg:'linear-gradient(180deg,#0F1817,#243634)', deco:'🌲' },
+    { id:'golden-cream',   name:'Golden Cream',   desc:'Modern · Hangat',   tier:'premium', bg:'linear-gradient(180deg,#FAF3E3,#E8D5A8)', deco:'🌅' },
+    { id:'ocean-calm',     name:'Ocean Calm',     desc:'Sejuk · Modern',    tier:'premium', bg:'linear-gradient(180deg,#B8D8E8,#7BAAC9)', deco:'🌊' },
+    { id:'midnight-luxe',  name:'Midnight Luxe',  desc:'Gelap · Mewah',     tier:'premium', bg:'linear-gradient(180deg,#1A1F2E,#0A0E18)', deco:'✨' },
+    { id:'terracotta',     name:'Terracotta',     desc:'Earthy · Hangat',   tier:'premium', bg:'linear-gradient(180deg,#E5BFA0,#C68B5C)', deco:'🏺' },
+    { id:'pearl-minimal',  name:'Pearl Minimal',  desc:'Bersih · Simple',   tier:'premium', bg:'linear-gradient(180deg,#F5F3EF,#E3DED5)', deco:'◯' },
+    { id:'emerald-royal',  name:'Emerald Royal',  desc:'Berani · Mewah',    tier:'premium', bg:'linear-gradient(180deg,#1E5945,#0E2E22)', deco:'👑' },
+    { id:'crystal-white',  name:'Crystal White',  desc:'Modern · Kristal',  tier:'premium', bg:'linear-gradient(180deg,#FFFFFF,#E8EDF0)', deco:'💎' }
+  ];
+
+  let currentPaket = 'premium';
+  let currentTema  = null;
+
+  function temaBoleh(tierTema, paketKey){
+    if(paketKey === 'basic')     return tierTema === 'basic';
+    if(paketKey === 'premium')   return tierTema === 'basic' || tierTema === 'premium';
+    if(paketKey === 'exclusive') return true;
+    return false;
+  }
+  function openModal(){
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function renderTemas(){
+    const grid = $('temaGrid');
+    if(!grid) return;
+    grid.innerHTML = '';
+    currentTema = null;
+    updateGoBtn();
+
+    TEMAS.forEach(t => {
+      const boleh = temaBoleh(t.tier, currentPaket);
+      const coverUrl = temaCoverUrl(t.id);
+      const card = document.createElement('div');
+      card.className = 'tema-card' + (boleh ? '' : ' locked');
+      card.dataset.tema = t.id;
+      card.dataset.tier = t.tier;
+      card.innerHTML = `
+        <div class="tema-preview"
+             data-fallback="${t.bg}"
+             style="background-image:url('${coverUrl}'), ${t.bg};">
+          <div class="tp-deco" style="top:10%;right:8%">${t.deco}</div>
+          <div class="tp-deco" style="bottom:10%;left:8%;font-size:26px">${t.deco}</div>
+          <div class="tp-eyebrow">The Wedding Of</div>
+          <div class="tp-couple">Raka &amp; Sinta</div>
+          <div class="tp-date">14 Juni 2026</div>
+          <div class="tp-btn">Buka Undangan</div>
+        </div>
+        ${boleh ? `
+          <div class="tema-demo">
+            <button type="button" class="tema-demo-btn" data-demo="${t.id}" aria-label="Lihat demo tema ${t.name}">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+            <span class="tema-demo-label">Lihat Demo</span>
+          </div>
+        ` : `
+          <div class="tema-locked">
+            <div class="lock-ic">🔒</div>
+            <div class="lock-txt">Paket Premium</div>
+            <div class="lock-sub">Upgrade untuk akses</div>
+          </div>
+        `}
+        <div class="tema-info">
+          <div>
+            <h4>${t.name}</h4>
+            <p>${t.desc}</p>
+          </div>
+          <span class="tema-tag ${t.tier}">${t.tier === 'basic' ? 'Basic' : t.tier === 'premium' ? 'Premium' : 'Exclusive'}</span>
+        </div>`;
+      grid.appendChild(card);
+    });
+
+    // Card custom untuk Exclusive
+    if(currentPaket === 'exclusive'){
+      const custom = document.createElement('div');
+      custom.className = 'tema-custom';
+      custom.dataset.tema = 'custom-exclusive';
+      custom.innerHTML = `
+        <div class="tema-custom-ic">✨</div>
+        <div class="tema-custom-info">
+          <h4>Custom Desain (Eksklusif)</h4>
+          <p>Tim desainer kami akan membuat tema khusus sesuai permintaan Anda — gratis untuk paket Exclusive.</p>
+        </div>
+        <div class="tema-custom-check">✓</div>`;
+      grid.appendChild(custom);
+    }
+
+    // Pasang fallback handler untuk cover yang gagal load
+    attachCoverFallback(grid);
+  }
+
+  function updateGoBtn(){
+    const btn = $('temaGo');
+    if(!btn) return;
+    if(currentTema){
+      btn.disabled = false;
+      btn.removeAttribute('disabled');
+    } else {
+      btn.disabled = true;
+      btn.setAttribute('disabled','');
+    }
+  }
+
+  function setPaket(key){
+    if(!PAKET_MAP[key]) return;
+    currentPaket = key;
+    const info = PAKET_MAP[key];
+
+    document.querySelectorAll('.paket-tab').forEach(t => {
+      t.classList.toggle('active', t.dataset.paket === key);
+    });
+    const descEl = $('paketDesc'); if(descEl) descEl.textContent = info.desc;
+    const priceEl = $('paketPriceInfo'); if(priceEl) priceEl.textContent = info.price;
+
+    renderTemas();
+  }
+
+  function setTema(temaId){
+    currentTema = temaId;
+    document.querySelectorAll('#temaGrid .tema-card, #temaGrid .tema-custom').forEach(c => {
+      c.classList.toggle('selected', c.dataset.tema === temaId);
+    });
+    updateGoBtn();
+  }
+
+  /* =========================================================
+     EVENT LISTENERS
+     ========================================================= */
+  document.querySelectorAll('[data-open-tema]').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      const paketHint = btn.dataset.paket || 'premium';
+      const temaHint  = btn.dataset.tema;
+      openModal();
+      setPaket(paketHint);
+      if(temaHint){
+        setTimeout(() => {
+          const card = document.querySelector(`#temaGrid .tema-card[data-tema="${temaHint}"]`);
+          if(card && !card.classList.contains('locked')) setTema(temaHint);
+        }, 100);
+      }
+    });
+  });
+
+  document.querySelectorAll('.paket-tab').forEach(tab => {
+    tab.addEventListener('click', () => setPaket(tab.dataset.paket));
+  });
+
+  const grid = $('temaGrid');
+  if(grid){
+    grid.addEventListener('click', e => {
+      const demoBtn = e.target.closest('[data-demo]');
+      if(demoBtn){
+        e.stopPropagation();
+        const temaId = demoBtn.dataset.demo;
+        window.open(`inv.html?invite=${DEMO_INVITE}&tema=${temaId}`, '_blank', 'noopener');
+        return;
+      }
+      if(e.target.closest('.tema-locked')) return;
+      const card = e.target.closest('.tema-card, .tema-custom');
+      if(card && card.dataset.tema && !card.classList.contains('locked')){
+        setTema(card.dataset.tema);
+      }
+    });
+  }
+
+  const cancelBtn = $('temaCancel');
+  if(cancelBtn) cancelBtn.addEventListener('click', closeModal);
+
+  const goBtn = $('temaGo');
+  if(goBtn) goBtn.addEventListener('click', () => {
+    if(!currentTema) return;
+    const info = PAKET_MAP[currentPaket];
+    const temaInfo = TEMAS.find(t => t.id === currentTema) || { name: 'Custom Desain', id: currentTema };
+    try{
+      localStorage.setItem('ivolera-paket', JSON.stringify({
+        key: currentPaket, name: info.name, price: info.price,
+        priceNum: info.priceNum, ts: Date.now()
+      }));
+      localStorage.setItem('ivolera-tema', JSON.stringify({
+        key: currentTema, name: temaInfo.name, ts: Date.now()
+      }));
+    }catch(e){}
+    location.href = `order.html?paket=${encodeURIComponent(currentPaket)}&tema=${encodeURIComponent(currentTema)}`;
+  });
+
+  const closeBtn = $('temaClose');
+  if(closeBtn) closeBtn.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
+
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+
+  try{
+    const url = new URLSearchParams(location.search);
+    if(url.get('open') === 'tema'){
+      setTimeout(() => {
+        openModal();
+        const paketHint = url.get('paket') || 'premium';
+        setPaket(paketHint);
+      }, 500);
+    }
+  }catch(e){}
+})();
+</script>
+
+<script src="js/chatbot.js"></script>
+<script>
+/* Warm-up Apps Script supaya tidak cold start */
+(function(){
+  const API = 'https://script.google.com/macros/s/AKfycbx6c_a04kR_7EBxOTpcRDP9gMoG7bVtgvzQs7_eZzLt8gQyCULH9QY388KaGS2BceZp/exec';
+  fetch(API + '?action=ping', { mode: 'no-cors' }).catch(() => {});
+  setInterval(() => {
+    fetch(API + '?action=ping', { mode: 'no-cors' }).catch(() => {});
+  }, 4 * 60 * 1000);
+})();
+</script>
+</body>
+</html>

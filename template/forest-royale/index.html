@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Undangan Pernikahan — Forest Royale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- STATIC BACKGROUND -->
+<div id="staticBg"></div>
+
+<!-- FLOATING DECORATIONS -->
+<div id="floatDecor" aria-hidden="true"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-inner">
+    <div class="loader-crest">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+        <path d="M12 2 L12 22 M12 4 L6 4 L6 10 Q6 14 12 16 Q18 14 18 10 L18 4 Z"/>
+        <path d="M12 16 L12 22"/>
+        <circle cx="12" cy="10" r="2" fill="currentColor" opacity=".5"/>
+      </svg>
+    </div>
+    <div class="loader-spinner"></div>
+    <p>Menyiapkan undangan…</p>
+  </div>
+</div>
+
+<!-- PHONE WRAPPER -->
+<div id="phoneWrapper">
+  <div id="invitationViewport">
+    <div id="invitationScroll">
+
+      <!-- ============ HERO — Cathedral Arch + Crest ============ -->
+      <section id="hero">
+        <video class="hero-video" id="heroVideo" playsinline muted preload="auto" poster="assets/images/hero-bg.jpeg">
+          <source src="assets/video/opening.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+
+        <!-- Cathedral arch frame -->
+        <div class="hero-cathedral" aria-hidden="true">
+          <svg viewBox="0 0 400 600" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="cathedralGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#B8894A" stop-opacity=".7"/>
+                <stop offset="100%" stop-color="#1A2B1A" stop-opacity=".2"/>
+              </linearGradient>
+            </defs>
+            <!-- Outer pointed arch -->
+            <path d="M200 30 Q60 120 60 320 L60 600 L340 600 L340 320 Q340 120 200 30 Z"
+                  fill="none" stroke="url(#cathedralGrad)" stroke-width="1.5"/>
+            <!-- Inner arch -->
+            <path d="M200 60 Q90 140 90 320 L90 600 L310 600 L310 320 Q310 140 200 60 Z"
+                  fill="none" stroke="#B8894A" stroke-width="0.8" opacity=".5"/>
+            <!-- Keystone -->
+            <circle cx="200" cy="32" r="4" fill="none" stroke="#B8894A" stroke-width="1" opacity=".7"/>
+          </svg>
+        </div>
+
+        <!-- Corner leaves -->
+        <svg class="leaf-corner tl" viewBox="0 0 60 60" aria-hidden="true">
+          <path d="M5 5 Q20 10 25 25 Q10 20 5 5 Z" fill="currentColor" opacity=".7"/>
+          <path d="M5 5 Q10 20 25 25" fill="none" stroke="currentColor" stroke-width=".8"/>
+          <path d="M5 15 Q15 20 20 30" fill="none" stroke="currentColor" stroke-width=".6" opacity=".6"/>
+        </svg>
+        <svg class="leaf-corner tr" viewBox="0 0 60 60" aria-hidden="true">
+          <path d="M55 5 Q40 10 35 25 Q50 20 55 5 Z" fill="currentColor" opacity=".7"/>
+          <path d="M55 5 Q50 20 35 25" fill="none" stroke="currentColor" stroke-width=".8"/>
+        </svg>
+        <svg class="leaf-corner bl" viewBox="0 0 60 60" aria-hidden="true">
+          <path d="M5 55 Q20 50 25 35 Q10 40 5 55 Z" fill="currentColor" opacity=".7"/>
+          <path d="M5 55 Q10 40 25 35" fill="none" stroke="currentColor" stroke-width=".8"/>
+        </svg>
+        <svg class="leaf-corner br" viewBox="0 0 60 60" aria-hidden="true">
+          <path d="M55 55 Q40 50 35 35 Q50 40 55 55 Z" fill="currentColor" opacity=".7"/>
+          <path d="M55 55 Q50 40 35 35" fill="none" stroke="currentColor" stroke-width=".8"/>
+        </svg>
+
+        <div class="hero-content">
+          <!-- Crest -->
+          <div class="hero-crest" aria-hidden="true">
+            <svg viewBox="0 0 60 70" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M30 4 L30 66"/>
+              <path d="M30 8 L12 8 L12 28 Q12 44 30 52 Q48 44 48 28 L48 8 Z"/>
+              <path d="M30 12 L16 12 L16 28 Q16 40 30 46 Q44 40 44 28 L44 12 Z" opacity=".5"/>
+              <circle cx="30" cy="28" r="4" fill="currentColor" opacity=".4"/>
+              <path d="M26 28 L34 28 M30 24 L30 32" stroke-width="1"/>
+            </svg>
+          </div>
+
+          <div class="hero-eyebrow-top">The Royal Wedding Of</div>
+          <div class="hero-monogram" id="heroMonogram">R &amp; D</div>
+          <h1 class="hero-names" id="heroNames">Rina <span class="hero-amp">&amp;</span> Dimas</h1>
+          <div class="hero-divider">
+            <span></span>
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.3">
+              <path d="M12 3 Q16 8 12 12 Q8 16 12 21 Q16 16 12 12 Q8 8 12 3 Z"/>
+            </svg>
+            <span></span>
+          </div>
+          <p class="hero-date" id="heroDate">Sabtu, 12 Desember 2026<br>Gedung Serbaguna Melati</p>
+          <div class="scroll-cue">
+            <span class="scroll-line"></span>
+            Gulir
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ COUNTDOWN + AYAT ============ -->
+      <section id="countdown">
+
+        <img class="corner-deco top-left"
+             src="assets/images/bingkai-sudut-kiriatas.png"
+             alt="" aria-hidden="true" loading="lazy">
+
+        <img class="corner-deco bottom-right"
+             src="assets/images/bingkai-sudut-kiriatas.png"
+             alt="" aria-hidden="true" loading="lazy">
+
+        <div class="container">
+
+          <!-- Ayat Al-Quran -->
+          <div class="verse-block reveal">
+            <div class="verse-ornament">
+              <span class="line"></span>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 3 Q16 8 12 12 Q8 16 12 21 Q16 16 12 12 Q8 8 12 3 Z"/>
+              </svg>
+              <span class="line"></span>
+            </div>
+            <p class="verse-arab" dir="rtl">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنْفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</p>
+            <p class="verse-latin">"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup dari jenismu sendiri supaya kamu dapat ketenangan hati dan menjadikan kasih sayang di antara kamu."</p>
+            <p class="verse-source">— QS. Ar-Rum: 21</p>
+          </div>
+
+          <!-- Gallery image -->
+          <div class="countdown-photo reveal" id="countdownPhotoWrap" hidden>
+            <div class="photo-skeleton" aria-hidden="true"></div>
+            <img src="" alt="Momen kami" loading="lazy" id="countdownPhoto">
+            <div class="countdown-photo-caption">Menuju hari bahagia</div>
+          </div>
+
+          <!-- Countdown -->
+          <div class="reveal" style="margin-top:2.4rem;">
+            <div class="eyebrow">Menuju Hari Bahagia</div>
+            <h2 class="section-title">Menghitung <em>hari</em></h2>
+          </div>
+
+          <!-- Countdown: Shield / Crest shape -->
+          <div class="cd-grid reveal" role="timer" aria-live="off">
+            <div class="cd-item">
+              <div class="cd-shield">
+                <div class="cd-num" id="cdDays">00</div>
+                <div class="cd-label">Hari</div>
+              </div>
+            </div>
+            <div class="cd-item">
+              <div class="cd-shield">
+                <div class="cd-num" id="cdHours">00</div>
+                <div class="cd-label">Jam</div>
+              </div>
+            </div>
+            <div class="cd-item">
+              <div class="cd-shield">
+                <div class="cd-num" id="cdMinutes">00</div>
+                <div class="cd-label">Menit</div>
+              </div>
+            </div>
+            <div class="cd-item">
+              <div class="cd-shield">
+                <div class="cd-num" id="cdSeconds">00</div>
+                <div class="cd-label">Detik</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ COUPLE — Crest Split ============ -->
+      <section id="couple">
+        <svg class="botanical bottom-left" viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M50 10 Q60 30 55 50 Q50 70 60 90" fill="none" stroke="currentColor" stroke-width="1"/>
+          <path d="M55 50 Q65 55 70 65" fill="none" stroke="currentColor" stroke-width="1"/>
+          <path d="M52 35 Q42 40 38 50" fill="none" stroke="currentColor" stroke-width="1"/>
+        </svg>
+
+        <img class="flower-deco flower-top-left"
+             src="assets/images/bunga.png"
+             alt="" aria-hidden="true" loading="lazy">
+
+        <div class="container">
+          <div class="reveal">
+            <div class="eyebrow">Mempelai</div>
+            <h2 class="section-title">Dua hati, <em>satu tujuan</em></h2>
+          </div>
+          <div class="couple-grid" id="coupleGrid"></div>
+          <svg class="vine reveal" viewBox="0 0 400 40" aria-hidden="true">
+            <path d="M20 20 Q100 5 200 20 Q300 35 380 20"/>
+            <circle class="leaf" cx="100" cy="12" r="2"/>
+            <circle class="leaf" cx="200" cy="20" r="2"/>
+            <circle class="leaf" cx="300" cy="28" r="2"/>
+          </svg>
+        </div>
+      </section>
+
+      <!-- ============ LOVE STORY — Royal Scroll ============ -->
+      <section id="love-story">
+
+        <img class="flower-deco flower-top-right"
+             src="assets/images/bunga.png"
+             alt="" aria-hidden="true" loading="lazy">
+
+        <div class="container">
+          <div class="reveal">
+            <div class="eyebrow">Perjalanan Kami</div>
+            <h2 class="section-title">Kisah <em>cinta</em></h2>
+            <p class="story-intro">Setiap langkah membawa kami lebih dekat pada satu tujuan.</p>
+          </div>
+          <div class="story-stage" id="timelineContainer"></div>
+        </div>
+      </section>
+
+      <!-- ============ EVENT — Shield Cards ============ -->
+      <section id="event">
+        <div class="container">
+          <div class="reveal">
+            <div class="eyebrow">Rangkaian Acara</div>
+            <h2 class="section-title">Waktu &amp; <em>tempat</em></h2>
+          </div>
+          <div class="event-grid" id="eventGrid"></div>
+          <svg class="vine reveal" viewBox="0 0 400 40" aria-hidden="true">
+            <path d="M20 20 Q100 5 200 20 Q300 35 380 20"/>
+            <circle class="leaf" cx="100" cy="12" r="2"/>
+            <circle class="leaf" cx="200" cy="20" r="2"/>
+            <circle class="leaf" cx="300" cy="28" r="2"/>
+          </svg>
+        </div>
+      </section>
+
+      <!-- ============ GALLERY — Royal Arch Masonry ============ -->
+      <section id="gallery">
+        <div class="container">
+          <div class="reveal">
+            <div class="eyebrow">Momen</div>
+            <h2 class="section-title">Galeri <em>kenangan</em></h2>
+          </div>
+          <div class="gallery-grid" id="galleryGrid"></div>
+        </div>
+      </section>
+
+      <!-- ============ RSVP ============ -->
+      <section id="rsvp">
+
+        <img class="flower-deco flower-bottom-left"
+             src="assets/images/bunga.png"
+             alt="" aria-hidden="true" loading="lazy">
+
+        <div class="container">
+          <div class="reveal">
+            <div class="eyebrow">Konfirmasi Kehadiran</div>
+            <h2 class="section-title">Ucapan &amp; <em>doa</em></h2>
+          </div>
+          <form id="rsvpForm" class="reveal">
+            <div class="field">
+              <label for="name">Nama</label>
+              <input type="text" id="name" name="name" required maxlength="60" placeholder="Nama lengkap">
+            </div>
+            <div class="field">
+              <label>Kehadiran</label>
+              <div class="attend-simple">
+                <label>
+                  <input type="radio" name="attend" value="Hadir" checked>
+                  <span>Hadir</span>
+                </label>
+                <label>
+                  <input type="radio" name="attend" value="Tidak hadir">
+                  <span>Tidak hadir</span>
+                </label>
+                <label>
+                  <input type="radio" name="attend" value="Belum pasti">
+                  <span>Belum pasti</span>
+                </label>
+              </div>
+            </div>
+            <div class="field">
+              <label for="wish">Ucapan dan doa</label>
+              <textarea id="wish" name="wish" maxlength="300" placeholder="Tulis ucapan untuk kedua mempelai"></textarea>
+            </div>
+            <button class="btn" type="submit">Kirim konfirmasi</button>
+            <p id="rsvp-msg">Terima kasih, konfirmasi Anda sudah terkirim.</p>
+          </form>
+          <div class="wishes" id="wishList"></div>
+        </div>
+      </section>
+
+      <!-- ============ GIFT ============ -->
+      <section id="gift">
+        <div class="container">
+          <div class="reveal">
+            <div class="eyebrow">Tanda Kasih</div>
+            <h2 class="section-title">Kirim <em>hadiah</em></h2>
+          </div>
+          <p class="gift-note reveal">Doa dan kehadiran Anda adalah hadiah terindah bagi kami. Namun jika ingin memberikan tanda kasih, berikut informasinya.</p>
+          <div class="gift-card reveal">
+            <div class="gift-crest-top" aria-hidden="true">
+              <svg viewBox="0 0 40 46" fill="none" stroke="currentColor" stroke-width="1">
+                <path d="M20 2 L20 44"/>
+                <path d="M20 5 L8 5 L8 22 Q8 32 20 38 Q32 32 32 22 L32 5 Z"/>
+                <circle cx="20" cy="20" r="3" fill="currentColor" opacity=".4"/>
+              </svg>
+            </div>
+            <div class="gift-bank" id="giftBank">Bank</div>
+            <div class="gift-num" id="giftNum">0000 0000 0000</div>
+            <div class="gift-name" id="giftName">a.n. Nama</div>
+            <button class="copy-btn" id="copyBtn" type="button">Salin Nomor Rekening</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CLOSING ============ -->
+      <section id="closing">
+
+        <img class="flower-deco flower-bottom-right"
+             src="assets/images/bunga.png"
+             alt="" aria-hidden="true" loading="lazy">
+
+        <div class="container">
+          <div class="closing-photo reveal" id="closingPhotoWrap" hidden>
+            <div class="photo-skeleton" aria-hidden="true"></div>
+            <img src="" alt="Momen kami" loading="lazy" id="closingPhoto">
+            <div class="closing-photo-fade"></div>
+          </div>
+
+          <div class="reveal">
+            <svg class="vine" viewBox="0 0 400 40" aria-hidden="true">
+              <path d="M20 20 Q100 5 200 20 Q300 35 380 20"/>
+              <circle class="leaf" cx="100" cy="12" r="2"/>
+              <circle class="leaf" cx="200" cy="20" r="2"/>
+              <circle class="leaf" cx="300" cy="28" r="2"/>
+            </svg>
+            <div class="eyebrow">Dengan Cinta</div>
+            <h2 class="hero-names" id="closingNames">Rina &amp; Dimas</h2>
+            <p class="closing-message">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu. Terima kasih atas segala cinta dan doa yang telah diberikan.</p>
+          </div>
+
+          <div class="made-by reveal">
+            <p class="made-by-label">Made with love by</p>
+            <a href="https://ivolera.com" target="_blank" rel="noopener" class="brand-logo" aria-label="Ivolera">
+              <img src="../../img/Logo.png" alt="Ivolera" loading="lazy">
+            </a>
+            <div class="made-by-links">
+              <a href="https://ivolera.com" target="_blank" rel="noopener" class="brand-icon" aria-label="Tautan">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/>
+                  <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/>
+                </svg>
+              </a>
+              <a href="https://instagram.com/ivolera" target="_blank" rel="noopener" class="brand-icon" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="5"/>
+                  <circle cx="12" cy="12" r="4"/>
+                  <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /#invitationScroll -->
+
+    <!-- MUSIC TOGGLE -->
+    <button class="music-toggle" id="musicToggle" aria-label="Putar musik" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <circle class="disc" cx="12" cy="12" r="9"/>
+        <circle cx="12" cy="12" r="2.5"/>
+        <path d="M12 3v2M12 19v2M3 12h2M19 12h2"/>
+      </svg>
+      <span class="icon-playing" style="display:none">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.4">
+          <rect x="7" y="5" width="3" height="14" rx="1"/>
+          <rect x="14" y="5" width="3" height="14" rx="1"/>
+        </svg>
+      </span>
+      <span class="icon-paused">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.4">
+          <polygon points="8,5 19,12 8,19" fill="currentColor" stroke="none"/>
+        </svg>
+      </span>
+    </button>
+
+    <!-- BOTTOM NAV -->
+    <nav id="bottomnav">
+      <a class="nav-item" href="#hero">
+        <span class="nav-dot"></span>
+        <svg viewBox="0 0 24 24"><path d="M3 10l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
+        <span>Beranda</span>
+      </a>
+      <a class="nav-item" href="#countdown">
+        <span class="nav-dot"></span>
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <span>Hitung</span>
+      </a>
+      <a class="nav-item" href="#couple">
+        <span class="nav-dot"></span>
+        <svg viewBox="0 0 24 24"><path d="M12 21s-6-5.5-6-10a6 6 0 0112 0c0 4.5-6 10-6 10z"/><circle cx="12" cy="11" r="2.5"/></svg>
+        <span>Mempelai</span>
+      </a>
+      <a class="nav-item" href="#event">
+        <span class="nav-dot"></span>
+        <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+        <span>Acara</span>
+      </a>
+      <a class="nav-item" href="#gallery">
+        <span class="nav-dot"></span>
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span>Galeri</span>
+      </a>
+      <a class="nav-item" href="#rsvp">
+        <span class="nav-dot"></span>
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        <span>RSVP</span>
+      </a>
+      <a class="nav-item" href="#gift">
+        <span class="nav-dot"></span>
+        <svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18"/><path d="M12 8s-2-5-5-5a2.5 2.5 0 000 5M12 8s2-5 5-5a2.5 2.5 0 010 5"/></svg>
+        <span>Hadiah</span>
+      </a>
+    </nav>
+
+  </div><!-- /#invitationViewport -->
+</div><!-- /#phoneWrapper -->
+
+<!-- OPENING SCREEN -->
+<div id="opening">
+  <video class="opening-video" id="openingVideo" playsinline muted preload="auto" poster="assets/images/hero-bg.jpg">
+    <source src="assets/video/opening.mp4" type="video/mp4">
+  </video>
+  <div class="opening-overlay"></div>
+
+  <!-- Forest canopy silhouette -->
+  <div class="opening-canopy" aria-hidden="true">
+    <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMax slice">
+      <path d="M0 200 L0 120 Q20 80 40 100 Q60 60 80 90 Q100 50 120 85 Q140 40 160 80 Q180 55 200 90 Q220 40 240 80 Q260 55 280 90 Q300 50 320 85 Q340 70 360 100 Q380 80 400 120 L400 200 Z"
+            fill="#0B1A0B" opacity=".85"/>
+      <path d="M0 200 L0 150 Q30 120 60 140 Q90 110 120 135 Q150 100 180 130 Q210 105 240 135 Q270 110 300 140 Q330 120 360 145 Q380 135 400 150 L400 200 Z"
+            fill="#0B1A0B" opacity=".95"/>
+    </svg>
+  </div>
+
+  <div class="opening-content">
+    <div class="opening-crest">
+      <svg viewBox="0 0 60 70" fill="none" stroke="currentColor" stroke-width="1.2">
+        <path d="M30 4 L30 66"/>
+        <path d="M30 8 L12 8 L12 28 Q12 44 30 52 Q48 44 48 28 L48 8 Z"/>
+        <circle cx="30" cy="28" r="4" fill="currentColor" opacity=".4"/>
+      </svg>
+    </div>
+    <div class="opening-eyebrow">Undangan Pernikahan</div>
+    <h1 class="opening-names" id="openingNames">Rina <span class="amp">&amp;</span> Dimas</h1>
+    <p class="opening-date" id="openingDate">Sabtu, 12 Desember 2026</p>
+    <div class="opening-guest" id="openingGuest" hidden>
+      <div class="opening-guest-label">Kepada Yth.</div>
+      <div class="opening-guest-name" id="openingGuestName">Tamu Undangan</div>
+    </div>
+    <button class="opening-btn" id="openingBtn" type="button">
+      Buka Undangan
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Lihat foto">
+  <button class="close" type="button" aria-label="Tutup">&times;</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="bgMusic" preload="auto" loop>
+  <source id="musicSource" src="assets/audio/riskitall.mp3" type="audio/mpeg">
+</audio>
+
+<script src="js/script.js"></script>
+</body>
+</html>

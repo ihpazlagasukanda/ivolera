@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Preview Semua Tema — Ivolera</title>
+<link rel="icon" href="img/Logo.png" type="image/png">
+<link rel="apple-touch-icon" href="img/Logo.png">
+<meta name="description" content="Preview semua tema undangan digital Ivolera — klik untuk lihat demo langsung.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:'class',theme:{extend:{fontFamily:{display:['"Cormorant Garamond"','serif'],sans:['"Plus Jakarta Sans"','sans-serif']}}}}</script>
+
+<style>
+:root{--bg:#F7F5F3;--bg2:#EFECE9;--ink:#192524;--mut:rgba(25,37,36,.62);--line:#D0D5CE;--card:#fff;--acc:#3C5759;--gold:#C8A25E;--mint:#D1EBDB;--deep:#192524}
+.dark{--bg:#0F1817;--bg2:#162221;--ink:#EFECE9;--mut:rgba(239,236,233,.62);--line:#2F4547;--card:#192524;--acc:#9CC9B0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);transition:background .3s,color .3s;overflow-x:hidden}
+.mut{color:var(--mut)} .acc{color:var(--acc)} .gold{color:var(--gold)}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.h2{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(30px,4vw,44px);line-height:1.12;margin-top:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:16px;font-weight:700;padding:14px 26px;transition:.25s;position:relative;overflow:hidden;text-decoration:none;cursor:pointer;font-family:inherit;border:none;font-size:14px}
+.btn-p{background:linear-gradient(135deg,#3C5759,#192524);color:#fff;box-shadow:0 12px 24px -10px rgba(60,87,89,.6)}
+.btn-g{background:linear-gradient(135deg,#E2C27F,#C8A25E);color:#192524;box-shadow:0 12px 28px -10px rgba(200,162,94,.7)}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.35),transparent 70%);transform:translateX(-120%);transition:.7s;pointer-events:none}
+.btn:hover::after{transform:translateX(120%)}
+.tbtn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--card);display:flex;align-items:center;justify-content:center;cursor:pointer}
+#nav.sc{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+#mm{max-height:0;overflow:hidden;opacity:0;transition:.35s}#mm.open{max-height:420px;opacity:1}
+.logo-img{width:36px;height:36px;object-fit:contain;border-radius:10px;background:transparent;display:block;transition:opacity .25s}
+.logo-fallback{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#3C5759,#192524);display:flex;align-items:center;justify-content:center}
+.logo-lg{width:52px;height:52px;object-fit:contain;display:block;background:transparent;border-radius:12px}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(20px);transition:.7s cubic-bezier(.22,1,.36,1)}.reveal.v{opacity:1;transform:none}
+.fade{opacity:0;animation:fu .7s cubic-bezier(.22,1,.36,1) forwards;transform:translateY(16px)}@keyframes fu{to{opacity:1;transform:none}}
+
+/* Petal & floral */
+.petal-layer{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.petal-img{position:absolute;top:-60px;opacity:0;animation:petalFall linear infinite;will-change:transform,opacity}
+.petal-img img{display:block;width:100%;height:auto;background:transparent;filter:drop-shadow(0 4px 8px rgba(0,0,0,.15))}
+@keyframes petalFall{0%{transform:translateY(-10%) translateX(0) rotate(0deg);opacity:0}8%{opacity:.9}50%{transform:translateY(50vh) translateX(50px) rotate(180deg);opacity:.9}92%{opacity:.6}100%{transform:translateY(105vh) translateX(-30px) rotate(360deg);opacity:0}}
+.petal-img.p2{animation-duration:14s}.petal-img.p3{animation-duration:18s}.petal-img.p4{animation-duration:12s}.petal-img.p5{animation-duration:16s}
+.corner-img{position:absolute;pointer-events:none;z-index:2;animation:cfSway 8s ease-in-out infinite;transform-origin:center;filter:drop-shadow(0 12px 30px rgba(0,0,0,.18))}
+.corner-img img{width:100%;height:auto;display:block;background:transparent}
+@keyframes cfSway{0%,100%{transform:rotate(0deg) scale(1)}50%{transform:rotate(6deg) scale(1.05)}}
+.corner-img.tr{top:-40px;right:-40px;animation-delay:1s}
+.corner-img.bl{bottom:-40px;left:-40px;animation-delay:2s}
+.bloom-img{position:absolute;pointer-events:none;animation:bloomPulse 5s ease-in-out infinite;transform-origin:center;filter:drop-shadow(0 8px 20px rgba(0,0,0,.15))}
+.bloom-img img{width:100%;height:auto;display:block;background:transparent}
+@keyframes bloomPulse{0%,100%{transform:scale(1) rotate(0deg);opacity:.75}50%{transform:scale(1.15) rotate(10deg);opacity:1}}
+.bloom-img.d1{animation-delay:.5s}.bloom-img.d3{animation-delay:2s}.bloom-img.d4{animation-delay:2.8s}
+.spark{position:absolute;pointer-events:none;animation:spk 3s ease-in-out infinite}
+.spark::before,.spark::after{content:"";position:absolute;background:#E2C27F;left:50%;top:50%;transform:translate(-50%,-50%)}
+.spark::before{width:2px;height:14px;border-radius:2px}
+.spark::after{width:14px;height:2px;border-radius:2px}
+.spark.s2{animation-delay:1s}.spark.s3{animation-delay:2s}.spark.s4{animation-delay:1.5s}
+@keyframes spk{0%,100%{opacity:0;transform:scale(.5)}50%{opacity:1;transform:scale(1)}}
+.hero-glow{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;animation:glowMove 14s ease-in-out infinite}
+@keyframes glowMove{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-30px) scale(1.15)}66%{transform:translate(-30px,40px) scale(.95)}}
+.orn-line{display:flex;align-items:center;justify-content:center;gap:14px;margin:8px auto}
+.orn-line::before,.orn-line::after{content:"";height:1px;width:70px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.orn-star{color:var(--gold);animation:starSpin 4s linear infinite;display:inline-block}
+@keyframes starSpin{to{transform:rotate(360deg)}}
+
+/* =====================================================================
+   TEMA CARD — Cover image 2:3 dengan fallback gradient
+   ===================================================================== */
+.tema-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+.tema-card{position:relative;border-radius:18px;overflow:hidden;border:2px solid var(--line);
+  background:var(--card);cursor:pointer;transition:.3s cubic-bezier(.22,1,.36,1);
+  text-decoration:none;color:inherit;display:block}
+.tema-card:hover{border-color:var(--gold);transform:translateY(-6px);
+  box-shadow:0 24px 40px -20px rgba(200,162,94,.6)}
+
+/* ✅ TEMA PREVIEW — Cover image 2:3 + overlay gelap untuk teks */
+.tema-preview{
+  aspect-ratio:2/3;
+  position:relative;
+  overflow:hidden;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:24px 18px;text-align:center;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  transition:transform .5s cubic-bezier(.22,1,.36,1);
+}
+.tema-card:hover .tema-preview{transform:scale(1.04);}
+
+/* Overlay gelap supaya teks tetap terbaca */
+.tema-preview::before{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,
+    rgba(15,24,23,.35) 0%,
+    rgba(15,24,23,.55) 50%,
+    rgba(15,24,23,.85) 100%);
+  z-index:1;pointer-events:none;
+}
+.tema-preview > *{position:relative;z-index:2;}
+
+.tema-preview .tp-deco{position:absolute;opacity:.28;pointer-events:none;font-size:42px;color:#fff}
+.tema-preview .tp-eyebrow{font-size:10px;letter-spacing:.3em;text-transform:uppercase;opacity:.85;margin-bottom:10px;font-weight:600;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+.tema-preview .tp-couple{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;
+  line-height:1.15;margin-bottom:10px;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.65)}
+.tema-preview .tp-date{font-size:11px;opacity:.85;margin-bottom:14px;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+.tema-preview .tp-btn{padding:6px 16px;border-radius:99px;font-size:10px;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.4);backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);color:#fff}
+
+.tema-info{padding:14px 16px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--card)}
+.tema-info h4{font-size:14px;font-weight:800;margin:0;color:var(--ink);line-height:1.2}
+.tema-info p{font-size:11px;color:var(--mut);margin:3px 0 0}
+.tema-tag{padding:4px 9px;border-radius:7px;font-size:9.5px;font-weight:800;letter-spacing:.05em;
+  text-transform:uppercase;white-space:nowrap}
+.tema-tag.basic{background:rgba(209,235,219,.3);color:#2F855A}
+.tema-tag.premium{background:rgba(200,162,94,.25);color:#8B6A1F}
+.tema-tag.exclusive{background:rgba(60,87,89,.3);color:#3C5759}
+.dark .tema-tag.basic{background:rgba(209,235,219,.15);color:#9CC9B0}
+.dark .tema-tag.premium{background:rgba(200,162,94,.2);color:#E2C27F}
+.dark .tema-tag.exclusive{background:rgba(209,235,219,.1);color:#D1EBDB}
+
+/* Hover overlay — tombol demo */
+.tema-demo{position:absolute;inset:0;background:rgba(15,24,23,.65);backdrop-filter:blur(4px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  opacity:0;transition:.25s;pointer-events:none;z-index:3}
+.tema-card:hover .tema-demo{opacity:1;pointer-events:auto}
+.tema-demo-btn{width:60px;height:60px;border-radius:50%;
+  background:linear-gradient(135deg,#E2C27F,#C8A25E);color:#192524;
+  display:flex;align-items:center;justify-content:center;font-size:24px;
+  box-shadow:0 12px 24px -8px rgba(200,162,94,.8);transition:.2s;border:none;cursor:pointer}
+.tema-demo-btn:hover{transform:scale(1.1)}
+.tema-demo-label{font-size:12px;font-weight:700;color:#fff;text-shadow:0 2px 4px rgba(0,0,0,.5)}
+
+/* Filter paket */
+.filter-tabs{display:inline-flex;gap:6px;padding:5px;background:var(--bg2);
+  border-radius:14px;border:1px solid var(--line)}
+.filter-tab{padding:9px 18px;border-radius:10px;border:none;background:transparent;
+  cursor:pointer;font-family:inherit;font-size:13px;font-weight:700;
+  transition:.2s;color:var(--mut)}
+.filter-tab:hover{color:var(--ink)}
+.filter-tab.active{background:linear-gradient(135deg,#E2C27F,#C8A25E);color:#192524;
+  box-shadow:0 6px 14px -8px rgba(200,162,94,.9)}
+
+@media(max-width:480px){
+  .tema-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .tema-preview{padding:16px 12px}
+  .tema-preview .tp-couple{font-size:20px}
+  .tema-preview .tp-deco{font-size:32px}
+  .tema-info{padding:10px 12px}
+  .tema-info h4{font-size:12px}
+  .tema-info p{font-size:10px}
+  .filter-tab{padding:7px 12px;font-size:12px}
+}
+
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal,.fade{opacity:1!important;transform:none!important}.petal-layer,.bloom-img,.spark,.corner-img,.hero-glow{display:none}}
+</style>
+</head>
+<body class="antialiased">
+
+<!-- NAVBAR -->
+<header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all" style="padding-top:env(safe-area-inset-top,0px)">
+  <div class="max-w-6xl mx-auto px-6 h-[68px] flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2.5">
+      <img id="navLogo" src="img/Logo.png" alt="Ivolera Logo" class="logo-img w-20 h-20"
+           data-logo-light="img/Logo.png" data-logo-dark="img/Logo_light.png"
+           onerror="this.outerHTML='&lt;span class=\'logo-fallback\'&gt;&lt;svg width=\'20\' height=\'20\' viewBox=\'0 0 24 24\' fill=\'#E2C27F\'&gt;&lt;path d=\'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z\'/&gt;&lt;/svg&gt;&lt;/span&gt;'">
+    </a>
+    <nav class="hidden md:flex gap-8 text-sm font-semibold mut">
+      <a href="index.html#fitur" class="hover:text-[var(--gold)]">Fitur</a>
+      <a href="index.html#tema" class="hover:text-[var(--gold)]">Tema</a>
+      <a href="index.html#harga" class="hover:text-[var(--gold)]">Harga</a>
+      <a href="index.html#testimoni" class="hover:text-[var(--gold)]">Testimoni</a>
+      <a href="index.html#faq" class="hover:text-[var(--gold)]">FAQ</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <button id="tt" class="tbtn" aria-label="Ganti tema"><span id="ti">🌙</span></button>
+      <a href="index.html#harga" class="btn btn-p hidden sm:inline-flex !py-2.5 !px-4 text-[13px]">Buat Undangan</a>
+      <button id="mt" class="tbtn md:hidden" aria-label="Menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+  <div id="mm" class="md:hidden border-t" style="background:var(--bg);border-color:var(--line)">
+    <nav class="px-6 py-4 flex flex-col text-sm font-semibold">
+      <a href="index.html#fitur" class="ml py-2.5">Fitur</a>
+      <a href="index.html#tema" class="ml py-2.5">Tema</a>
+      <a href="index.html#harga" class="ml py-2.5">Harga</a>
+      <a href="index.html#testimoni" class="ml py-2.5">Testimoni</a>
+      <a href="index.html#faq" class="ml py-2.5">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO PREVIEW -->
+<section class="relative overflow-hidden min-h-[60vh] flex items-center pt-24"
+         style="background-image:radial-gradient(70% 60% at 85% 20%,rgba(200,162,94,.16),transparent 60%),radial-gradient(60% 60% at 10% 10%,rgba(60,87,89,.14),transparent 60%)">
+  <div class="petal-layer" data-petals="10"></div>
+  <div class="hero-glow" style="width:360px;height:360px;background:rgba(200,162,94,.35);top:8%;right:6%"></div>
+  <div class="hero-glow" style="width:300px;height:300px;background:rgba(60,87,89,.28);bottom:6%;left:4%;animation-delay:4s"></div>
+  <div class="corner-img tr" style="width:180px;opacity:.7">
+    <img src="img/flower_3.png" alt="" onerror="this.parentElement.style.display='none'">
+  </div>
+  <div class="bloom-img d1" style="top:20%;left:6%;width:80px">
+    <img src="img/flower_2.png" alt="" onerror="this.parentElement.style.display='none'">
+  </div>
+  <div class="spark" style="top:25%;left:10%"></div>
+  <div class="spark s2" style="top:60%;left:8%"></div>
+  <div class="spark s3" style="top:35%;right:14%"></div>
+  <div class="spark s4" style="bottom:20%;right:20%"></div>
+
+  <div class="max-w-6xl mx-auto px-6 py-16 w-full relative z-10 text-center">
+    <span class="fade inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[11px] font-bold uppercase tracking-[.14em]"
+          style="border-color:var(--line);background:var(--card)">
+      <span class="w-1.5 h-1.5 rounded-full bg-[var(--gold)]"></span>Galeri Tema • Ivolera
+    </span>
+    <h1 class="fade font-display font-bold text-[36px] sm:text-5xl leading-[1.1] mt-6" style="animation-delay:.1s">
+      Preview <span class="gold italic">semua tema</span> undangan
+    </h1>
+    <p class="fade mt-4 mut text-lg max-w-2xl mx-auto" style="animation-delay:.2s">
+      Klik salah satu tema untuk melihat demo langsung. Semua tema bisa dikustomisasi sesuai kebutuhan Anda.
+    </p>
+    <div class="fade mt-8 flex flex-col sm:flex-row gap-3 justify-center" style="animation-delay:.3s">
+      <a href="index.html#harga" class="btn btn-g">Buat Undangan Sekarang →</a>
+      <a href="index.html" class="btn" style="border:1px solid var(--line);background:var(--card)">← Kembali ke Beranda</a>
+    </div>
+  </div>
+</section>
+
+<!-- GRID TEMA -->
+<section class="relative overflow-hidden" style="background:var(--bg2)">
+  <div class="petal-layer" data-petals="6"></div>
+  <div class="corner-img tr" style="width:140px;opacity:.5">
+    <img src="img/flower_2.png" alt="" onerror="this.parentElement.style.display='none'">
+  </div>
+  <div class="bloom-img d3" style="bottom:8%;left:4%;width:70px">
+    <img src="img/flower_1.png" alt="" onerror="this.parentElement.style.display='none'">
+  </div>
+  <div class="max-w-6xl mx-auto px-6 py-20 relative z-10">
+
+    <div class="text-center reveal mb-10">
+      <p class="eyebrow">Pilih Tema</p>
+      <h2 class="h2">Semua tema dalam satu halaman</h2>
+      <div class="orn-line"><span class="orn-star">✦</span></div>
+      <p class="mt-3 mut">Filter berdasarkan paket, lalu klik tema untuk lihat demo.</p>
+    </div>
+
+    <!-- Filter paket -->
+    <div class="flex justify-center mb-10 reveal">
+      <div class="filter-tabs" role="tablist">
+        <button type="button" class="filter-tab active" data-filter="all">Semua</button>
+        <button type="button" class="filter-tab" data-filter="basic">Basic</button>
+        <button type="button" class="filter-tab" data-filter="premium">Premium</button>
+        <button type="button" class="filter-tab" data-filter="exclusive">Exclusive</button>
+      </div>
+    </div>
+
+    <!-- Grid -->
+    <div class="tema-grid" id="temaGrid"></div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="relative overflow-hidden"
+         style="background:radial-gradient(60% 120% at 80% 0%,rgba(200,162,94,.28),transparent 60%),linear-gradient(135deg,#3C5759,#192524 60%,#0F1817)">
+  <div class="petal-layer" data-petals="8"></div>
+  <div class="corner-img bl" style="width:150px;opacity:.75">
+    <img src="img/flower_3.png" alt="" onerror="this.parentElement.style.display='none'">
+  </div>
+  <div class="corner-img tr" style="width:140px;opacity:.75;transform:scaleX(-1)">
+    <img src="img/flower_1.png" alt="" onerror="this.parentElement.style.display='none'">
+  </div>
+  <div class="spark" style="top:18%;left:12%"></div>
+  <div class="spark s2" style="bottom:22%;right:16%"></div>
+  <div class="max-w-6xl mx-auto px-6 py-20 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left reveal relative z-10">
+    <div>
+      <h2 class="font-display font-bold text-4xl sm:text-5xl text-white">
+        Suka salah satu tema? <span class="italic text-[#E2C27F]">Buat sekarang.</span>
+      </h2>
+      <p class="mt-3 text-white/70">Mulai dari Rp49.000 — undangan digital elegan dalam hitungan menit.</p>
+    </div>
+    <a href="index.html#harga" class="btn btn-g shrink-0 !px-9 !py-5 text-lg">Mulai Buat Undangan →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="relative overflow-hidden" style="background:#0F1817;color:#EFECE9">
+  <div class="petal-layer" data-petals="4"></div>
+  <div class="bloom-img d3" style="top:10%;right:5%;width:60px;opacity:.5">
+    <img src="img/flower_2.png" alt="" onerror="this.parentElement.style.display='none'">
+  </div>
+  <div class="max-w-6xl mx-auto px-6 py-16 grid sm:grid-cols-2 md:grid-cols-4 gap-10 relative z-10">
+    <div>
+      <div class="flex items-center gap-3 mb-3">
+        <img src="img/Logo_light.png" alt="Ivolera Logo" class="logo-lg w-20 h-20"
+             onerror="this.outerHTML='&lt;span style=\'width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,#3C5759,#192524);display:flex;align-items:center;justify-content:center\'&gt;&lt;svg width=\'24\' height=\'24\' viewBox=\'0 0 24 24\' fill=\'#E2C27F\'&gt;&lt;path d=\'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z\'/&gt;&lt;/svg&gt;&lt;/span&gt;'">
+      </div>
+      <p class="text-sm leading-relaxed" style="color:rgba(239,236,233,.62)">
+        Aplikasi undangan pernikahan digital dengan desain elegan, fitur lengkap, dan harga terjangkau.
+      </p>
+    </div>
+    <div>
+      <h4 class="font-bold text-sm">Produk</h4>
+      <ul class="mt-4 space-y-2 text-sm" style="color:rgba(239,236,233,.62)">
+        <li><a href="index.html#fitur" class="hover:text-[var(--gold)]">Fitur</a></li>
+        <li><a href="preview.html" class="hover:text-[var(--gold)]">Galeri Tema</a></li>
+        <li><a href="index.html#harga" class="hover:text-[var(--gold)]">Harga</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-bold text-sm">Perusahaan</h4>
+      <ul class="mt-4 space-y-2 text-sm" style="color:rgba(239,236,233,.62)">
+        <li><a href="index.html#testimoni" class="hover:text-[var(--gold)]">Testimoni</a></li>
+        <li><a href="index.html#faq" class="hover:text-[var(--gold)]">FAQ</a></li>
+        <li><a href="#" class="hover:text-[var(--gold)]">Blog</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-bold text-sm">Kontak</h4>
+      <ul class="mt-4 space-y-2 text-sm" style="color:rgba(239,236,233,.62)">
+        <li>hello@ivolera.com</li>
+        <li>0812-3456-7890</li>
+      </ul>
+    </div>
+  </div>
+  <div class="max-w-6xl mx-auto px-6 pb-8 relative z-10">
+    <div class="pt-6 border-t text-xs" style="border-color:rgba(239,236,233,.14);color:rgba(239,236,233,.62)">
+      © 2026 Ivolera — Undangan Pernikahan Digital. Seluruh hak cipta dilindungi.
+    </div>
+  </div>
+</footer>
+
+<script>
+const $=id=>document.getElementById(id),root=document.documentElement;
+const FLOWER_IMGS=['img/flower_1.png','img/flower_2.png','img/flower_3.png'];
+
+/* Slug demo — harus terdaftar di DEMO_SLUGS backend Apps Script */
+const DEMO_INVITE = 'mila-arlo';
+
+/* =====================================================================
+   ✅ HELPER COVER TEMA — path gambar & fallback gradient
+   ===================================================================== */
+const TEMA_COVER_PATH = 'img/';      // ← ganti 'img/tema/' kalau pakai subfolder
+const TEMA_COVER_EXT  = '.jpeg';     // ← sesuai request: .jpeg
+function temaCoverUrl(temaId){
+  return TEMA_COVER_PATH + temaId + TEMA_COVER_EXT;
+}
+/* Fallback otomatis: kalau gambar gagal load, ganti jadi gradient */
+function attachCoverFallback(root){
+  root.querySelectorAll('.tema-preview').forEach(el => {
+    const bg = el.style.backgroundImage;
+    if(!bg || bg === 'none') return;
+    const m = bg.match(/url\(["']?(.*?)["']?\)/);
+    if(!m) return;
+    const img = new Image();
+    img.onerror = () => {
+      const fb = el.dataset.fallback || 'linear-gradient(180deg,#3C5759,#192524)';
+      el.style.backgroundImage = fb;
+    };
+    img.src = m[1];
+  });
+}
+
+/* ============ TEMA DATA (sinkron dengan index.html) ============ */
+const TEMAS = [
+  { id:'sage-elegance',  name:'Sage Elegance',  desc:'Klasik · Natural',  tier:'basic',   bg:'linear-gradient(180deg,#D1EBDB,#EFECE9)', deco:'🌿' },
+  { id:'deep-teal',      name:'Deep Teal',      desc:'Mewah · Klasik',    tier:'basic',   bg:'linear-gradient(180deg,#3C5759,#192524)', deco:'✦' },
+  { id:'rose-blush',     name:'Rose Blush',     desc:'Feminin · Lembut',  tier:'basic',   bg:'linear-gradient(180deg,#F4D7DD,#E8B4C0)', deco:'🌸' },
+  { id:'lavender-dream', name:'Lavender Dream', desc:'Tenang · Elegan',   tier:'basic',   bg:'linear-gradient(180deg,#E4DBF0,#C9B8E0)', deco:'💜' },
+  { id:'forest-royale',  name:'Forest Royale',  desc:'Elegan · Bold',     tier:'premium', bg:'linear-gradient(180deg,#0F1817,#243634)', deco:'🌲' },
+  { id:'golden-cream',   name:'Golden Cream',   desc:'Modern · Hangat',   tier:'premium', bg:'linear-gradient(180deg,#FAF3E3,#E8D5A8)', deco:'🌅' },
+  { id:'ocean-calm',     name:'Ocean Calm',     desc:'Sejuk · Modern',    tier:'premium', bg:'linear-gradient(180deg,#B8D8E8,#7BAAC9)', deco:'🌊' },
+  { id:'midnight-luxe',  name:'Midnight Luxe',  desc:'Gelap · Mewah',     tier:'premium', bg:'linear-gradient(180deg,#1A1F2E,#0A0E18)', deco:'✨' },
+  { id:'terracotta',     name:'Terracotta',     desc:'Earthy · Hangat',   tier:'premium', bg:'linear-gradient(180deg,#E5BFA0,#C68B5C)', deco:'🏺' },
+  { id:'pearl-minimal',  name:'Pearl Minimal',  desc:'Bersih · Simple',   tier:'premium', bg:'linear-gradient(180deg,#F5F3EF,#E3DED5)', deco:'◯' },
+  { id:'emerald-royal',  name:'Emerald Royal',  desc:'Berani · Mewah',    tier:'premium', bg:'linear-gradient(180deg,#1E5945,#0E2E22)', deco:'👑' },
+  { id:'crystal-white',  name:'Crystal White',  desc:'Modern · Kristal',  tier:'premium', bg:'linear-gradient(180deg,#FFFFFF,#E8EDF0)', deco:'💎' }
+];
+
+const TIER_LABEL = { basic:'Basic', premium:'Premium', exclusive:'Exclusive' };
+
+let currentFilter = 'all';
+
+/* ============ RENDER GRID ============ */
+function renderTemas(){
+  const grid = $('temaGrid');
+  if(!grid) return;
+
+  const visible = currentFilter === 'all'
+    ? TEMAS
+    : TEMAS.filter(t => t.tier === currentFilter);
+
+  if(!visible.length){
+    grid.innerHTML = `<p class="mut text-center col-span-full py-10">Belum ada tema untuk filter ini.</p>`;
+    return;
+  }
+
+  grid.innerHTML = visible.map(t => `
+    <a class="tema-card" href="inv.html?invite=${DEMO_INVITE}&tema=${t.id}" target="_blank" rel="noopener">
+      <div class="tema-preview"
+           data-fallback="${t.bg}"
+           style="background-image:url('${temaCoverUrl(t.id)}'), ${t.bg};">
+        <div class="tp-deco" style="top:10%;right:8%">${t.deco}</div>
+        <div class="tp-deco" style="bottom:10%;left:8%;font-size:32px">${t.deco}</div>
+        <div class="tp-eyebrow">The Wedding Of</div>
+        <div class="tp-couple">Raka &amp; Sinta</div>
+        <div class="tp-date">14 Juni 2026</div>
+        <div class="tp-btn">Buka Undangan</div>
+        <div class="tema-demo">
+          <div class="tema-demo-btn">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <span class="tema-demo-label">Lihat Demo</span>
+        </div>
+      </div>
+      <div class="tema-info">
+        <div>
+          <h4>${t.name}</h4>
+          <p>${t.desc}</p>
+        </div>
+        <span class="tema-tag ${t.tier}">${TIER_LABEL[t.tier]}</span>
+      </div>
+    </a>
+  `).join('');
+
+  /* Pasang fallback handler untuk cover yang gagal load */
+  attachCoverFallback(grid);
+}
+
+/* ============ FILTER ============ */
+document.querySelectorAll('.filter-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.filter-tab').forEach(x => x.classList.remove('active'));
+    tab.classList.add('active');
+    currentFilter = tab.dataset.filter;
+    renderTemas();
+  });
+});
+
+/* ============ NAVBAR ============ */
+function swapNavLogo(isDark){
+  const navLogo=$('navLogo'); if(!navLogo) return;
+  const target=isDark?navLogo.dataset.logoDark:navLogo.dataset.logoLight;
+  if(target && navLogo.src.indexOf(target)===-1) navLogo.src=target;
+}
+function ap(t){
+  const isDark=(t==='dark');
+  root.classList.toggle('dark',isDark);
+  const ti=$('ti'); if(ti) ti.textContent=isDark?'☀️':'🌙';
+  swapNavLogo(isDark);
+  try{localStorage.setItem('ivolera-theme',t)}catch(e){}
+}
+let st=null;try{st=localStorage.getItem('ivolera-theme')}catch(e){}
+ap(st||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+$('tt').onclick=()=>ap(root.classList.contains('dark')?'light':'dark');
+
+function os(){const y=scrollY;$('nav').classList.toggle('sc',y>16)}
+addEventListener('scroll',os,{passive:true});os();
+
+$('mt').onclick=()=>{const o=$('mm').classList.toggle('open');$('mt').setAttribute('aria-expanded',o);$('mt').textContent=o?'✕':'☰'};
+document.querySelectorAll('.ml').forEach(l=>l.onclick=()=>{$('mm').classList.remove('open');$('mt').textContent='☰'});
+
+/* ============ REVEAL ============ */
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');ro.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(e=>ro.observe(e));
+
+/* ============ PETALS ============ */
+(function(){
+  document.querySelectorAll('.petal-layer').forEach(layer=>{
+    const count=parseInt(layer.dataset.petals||6,10);
+    for(let i=0;i<count;i++){
+      const p=document.createElement('div');
+      p.className='petal-img p'+(2+(i%4));
+      p.style.left=(Math.random()*100)+'%';
+      p.style.width=(22+Math.random()*22)+'px';
+      p.style.animationDuration=(11+Math.random()*9)+'s';
+      p.style.animationDelay=(Math.random()*12)+'s';
+      p.innerHTML=`<img src="${FLOWER_IMGS[i%FLOWER_IMGS.length]}" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">`;
+      layer.appendChild(p);
+    }
+  });
+})();
+
+/* ============ INIT ============ */
+renderTemas();
+</script>
+
+</body>
+</html>

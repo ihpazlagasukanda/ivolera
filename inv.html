@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Memuat Undangan...</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{
+    height:100%;
+    overflow:hidden;
+  }
+  body{
+    font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    background:#FAF8F5;
+    color:#2E2A28;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    min-height:100vh;
+    position:relative;
+  }
+
+  /* Background — soft cream gradient */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+      radial-gradient(ellipse at 20% 15%, rgba(229,216,203,.45) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 85%, rgba(232,212,208,.35) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 50%, rgba(255,255,255,.6) 0%, transparent 60%),
+      linear-gradient(160deg, #FCFBF8 0%, #F5F1EA 50%, #EFE9E0 100%);
+    z-index:0;
+    pointer-events:none;
+  }
+
+  /* Grain texture */
+  body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+    opacity:.4;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+
+  /* Container utama */
+  .loading-screen{
+    position:relative;
+    z-index:2;
+    width:100%;
+    max-width:420px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:36px;
+    transition:opacity .8s ease, transform .8s ease;
+  }
+  .loading-screen.fade-out{
+    opacity:0;
+    transform:scale(1.02);
+    pointer-events:none;
+  }
+
+  /* ============ LOGO SECTION ============ */
+  .logo-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:16px;
+    animation:logoEnter 1.2s cubic-bezier(.2,.7,.3,1) both;
+  }
+  @keyframes logoEnter{
+    from{opacity:0;transform:translateY(16px) scale(.96);}
+    to{opacity:1;transform:translateY(0) scale(1);}
+  }
+
+  /* Logo mark */
+  .logo-mark{
+    width:120px;
+    height:120px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    animation:logoPulse 3.2s ease-in-out infinite;
+  }
+  @keyframes logoPulse{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.03);}
+  }
+
+  /* Gambar logo */
+  .logo-mark img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    display:block;
+    filter:drop-shadow(0 6px 20px rgba(155,137,128,.18));
+  }
+
+  /* ============================================================
+     RING PUTAR — 3 lapis biar kuat terlihat di background cream
+     ============================================================ */
+  .logo-ring{
+    position:absolute;
+    inset:-14px;
+    border:1.5px solid rgba(155,137,128,.22);
+    border-radius:50%;
+    pointer-events:none;
+  }
+
+  /* Ring berputar — gold tebal dengan glow */
+  .logo-ring::before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    border:2.5px solid transparent;
+    border-top-color:#B88A3E;
+    border-right-color:#D4A857;
+    border-radius:50%;
+    animation:ringSpin 2.6s linear infinite;
+    filter:drop-shadow(0 0 6px rgba(201,169,97,.6));
+  }
+
+  /* Ring dalam — static tipis */
+  .logo-ring::after{
+    content:"";
+    position:absolute;
+    inset:6px;
+    border:1px solid rgba(155,137,128,.15);
+    border-radius:50%;
+  }
+
+  @keyframes ringSpin{
+    to{transform:rotate(360deg);}
+  }
+
+  /* Nama brand */
+  .brand-name{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:22px;
+    font-weight:500;
+    letter-spacing:.06em;
+    color:#494441;
+    opacity:.95;
+  }
+
+  /* ============================================================
+     FILL BAR — pertebal + glow + inner track lebih jelas
+     ============================================================ */
+  .fill-bar{
+    width:100%;
+    max-width:320px;
+    height:3px;
+    position:relative;
+    background:rgba(155,137,128,.12);
+    overflow:hidden;
+    border-radius:2px;
+    box-shadow:inset 0 1px 2px rgba(155,137,128,.08);
+  }
+
+  /* Track kiri & kanan: fill mengisi dari tengah */
+  .fill-bar::before,
+  .fill-bar::after{
+    content:"";
+    position:absolute;
+    top:0;
+    height:100%;
+    background:linear-gradient(90deg,
+      transparent 0%,
+      #B88A3E 20%,
+      #D4A857 50%,
+      #E8D9B0 80%,
+      transparent 100%);
+    border-radius:2px;
+  }
+  .fill-bar::before{
+    right:50%;
+    width:0;
+    animation:fillLeft 2.6s cubic-bezier(.4,0,.2,1) infinite;
+    box-shadow:0 0 12px rgba(201,169,97,.7), 0 0 20px rgba(232,217,176,.4);
+  }
+  .fill-bar::after{
+    left:50%;
+    width:0;
+    animation:fillRight 2.6s cubic-bezier(.4,0,.2,1) infinite;
+    box-shadow:0 0 12px rgba(201,169,97,.7), 0 0 20px rgba(232,217,176,.4);
+  }
+
+  @keyframes fillLeft{
+    0%{width:0;opacity:1;}
+    45%{width:50%;opacity:1;}
+    60%{width:50%;opacity:1;}
+    100%{width:50%;opacity:0;}
+  }
+  @keyframes fillRight{
+    0%{width:0;opacity:1;}
+    45%{width:50%;opacity:1;}
+    60%{width:50%;opacity:1;}
+    100%{width:50%;opacity:0;}
+  }
+
+  /* Titik emas di tengah — glow kuat */
+  .fill-center{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:radial-gradient(circle, #E8D9B0 0%, #C9A961 60%, #B88A3E 100%);
+    box-shadow:
+      0 0 10px rgba(201,169,97,.9),
+      0 0 20px rgba(201,169,97,.5),
+      0 0 0 3px rgba(255,255,255,.6);
+    z-index:3;
+    animation:centerPulse 1.4s ease-in-out infinite;
+  }
+  @keyframes centerPulse{
+    0%,100%{transform:translate(-50%,-50%) scale(1);}
+    50%{transform:translate(-50%,-50%) scale(1.25);}
+  }
+
+  /* ============ STATUS TEXT ============ */
+  .status-text{
+    font-family:'DM Sans',sans-serif;
+    font-weight:400;
+    font-size:12.5px;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:#7A6F65;
+    text-align:center;
+    min-height:18px;
+    transition:opacity .4s ease;
+  }
+
+  /* ============ DOTS ============ */
+  .dots{
+    display:flex;
+    gap:8px;
+    justify-content:center;
+  }
+  .dots span{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:radial-gradient(circle, #E8D9B0 0%, #C9A961 100%);
+    opacity:.35;
+    animation:dotPulse 1.6s ease-in-out infinite;
+    box-shadow:0 0 8px rgba(201,169,97,.5);
+  }
+  .dots span:nth-child(2){animation-delay:.2s;}
+  .dots span:nth-child(3){animation-delay:.4s;}
+  @keyframes dotPulse{
+    0%,100%{opacity:.35;transform:scale(.85);}
+    50%{opacity:1;transform:scale(1.2);}
+  }
+
+  /* ============ ERROR STATE ============ */
+  .error-state{
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    gap:16px;
+    text-align:center;
+    animation:errorIn .6s cubic-bezier(.2,.7,.3,1) both;
+  }
+  .error-state.show{display:flex;}
+  @keyframes errorIn{
+    from{opacity:0;transform:translateY(8px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+
+  .error-icon{
+    width:64px;
+    height:64px;
+    border-radius:50%;
+    border:1.5px solid rgba(184,138,62,.5);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    color:#B88A3E;
+    background:rgba(229,216,203,.5);
+    box-shadow:0 4px 16px rgba(201,169,97,.2);
+  }
+  .error-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px;
+    font-weight:500;
+    color:#2E2A28;
+    letter-spacing:.02em;
+  }
+  .error-msg{
+    font-size:13.5px;
+    line-height:1.7;
+    color:#7A6F65;
+    max-width:320px;
+  }
+
+  /* ============ IFRAME HOST ============ */
+  #templateHost{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    background:#fff;
+    display:none;
+    opacity:0;
+    transition:opacity .6s ease;
+  }
+  #templateHost.active{
+    display:block;
+    opacity:1;
+  }
+  #templateHost iframe{
+    width:100%;
+    height:100%;
+    border:0;
+    display:block;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 400px){
+    .logo-mark{width:100px;height:100px;}
+    .brand-name{font-size:19px;}
+    .fill-bar{max-width:250px;}
+    .status-text{font-size:11px;letter-spacing:.24em;}
+  }
+</style>
+</head>
+<body>
+
+<div class="loading-screen" id="loadingScreen">
+
+  <!-- Logo Section -->
+  <div class="logo-wrap">
+    <div class="logo-mark">
+      <div class="logo-ring"></div>
+      <img src="img/Logo.png" alt="Ivolera">
+    </div>
+    <div class="brand-name">Ivolera</div>
+  </div>
+
+  <!-- Fill Bar -->
+  <div class="fill-bar">
+    <div class="fill-center"></div>
+  </div>
+
+  <!-- Status Text -->
+  <div class="status-text" id="statusText">Memuat undangan</div>
+
+  <!-- Dots -->
+  <div class="dots" id="dots">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+</div>
+
+<!-- Error State -->
+<div class="loading-screen" id="errorScreen" style="display:none;">
+  <div class="error-state show" id="errorState">
+    <div class="error-icon" id="errorIcon">⚠</div>
+    <div class="error-title" id="errorTitle">Gagal Memuat</div>
+    <div class="error-msg" id="errorMsg">Terjadi kesalahan.</div>
+  </div>
+</div>
+
+<script>
+/* =====================================================================
+   IVOLERA — Router + Loading Screen (Soft Cream · High Contrast)
+   ===================================================================== */
+const API = 'https://script.google.com/macros/s/AKfycbx6c_a04kR_7EBxOTpcRDP9gMoG7bVtgvzQs7_eZzLt8gQyCULH9QY388KaGS2BceZp/exec';
+
+const DEMO_SLUGS = ['mila-arlo'];
+
+const VALID_TEMAS = [
+  'sage-elegance','deep-teal','forest-royale','golden-cream',
+  'rose-blush','lavender-dream','ocean-calm','midnight-luxe',
+  'terracotta','pearl-minimal','emerald-royal','crystal-white'
+];
+
+const TEMPLATE_PATHS = {
+  'sage-elegance':  'template/sage-elegance/index.html',
+  'deep-teal':      'template/deep-teal/index.html',
+  'forest-royale':  'template/forest-royale/index.html',
+  'golden-cream':   'template/golden-cream/index.html',
+  'rose-blush':     'template/rose-blush/index.html',
+  'lavender-dream': 'template/lavender-dream/index.html',
+  'ocean-calm':     'template/ocean-calm/index.html',
+  'midnight-luxe':  'template/midnight-luxe/index.html',
+  'terracotta':     'template/terracotta/index.html',
+  'pearl-minimal':  'template/pearl-minimal/index.html',
+  'emerald-royal':  'template/emerald-royal/index.html',
+  'crystal-white':  'template/crystal-white/index.html'
+};
+
+const DEFAULT_TEMA = 'sage-elegance';
+const $ = id => document.getElementById(id);
+const isDemo = slug => DEMO_SLUGS.includes(String(slug || '').toLowerCase().trim());
+
+const STATUS_MESSAGES = [
+  'Memuat undangan',
+  'Menyiapkan data',
+  'Merangkai kenangan',
+  'Hampir siap'
+];
+let statusIdx = 0;
+let statusInterval = null;
+
+function startStatusRotation(){
+  const el = $('statusText');
+  if(!el) return;
+  statusInterval = setInterval(() => {
+    statusIdx = (statusIdx + 1) % STATUS_MESSAGES.length;
+    el.style.opacity = '0';
+    setTimeout(() => {
+      el.textContent = STATUS_MESSAGES[statusIdx];
+      el.style.opacity = '1';
+    }, 200);
+  }, 1400);
+}
+function stopStatusRotation(){
+  if(statusInterval){ clearInterval(statusInterval); statusInterval = null; }
+}
+
+function showError(title, msg, icon){
+  stopStatusRotation();
+  const screen = $('loadingScreen');
+  const errorScreen = $('errorScreen');
+  if(screen) screen.style.display = 'none';
+  if(errorScreen) errorScreen.style.display = 'flex';
+  $('errorTitle').textContent = title;
+  $('errorMsg').innerHTML = msg;
+  if(icon) $('errorIcon').textContent = icon;
+}
+
+function hideLoadingAndShowTemplate(iframeHtml){
+  stopStatusRotation();
+  const screen = $('loadingScreen');
+  const host = document.createElement('div');
+  host.id = 'templateHost';
+  host.innerHTML = iframeHtml;
+  document.body.appendChild(host);
+
+  if(screen) screen.classList.add('fade-out');
+
+  setTimeout(() => {
+    host.classList.add('active');
+    if(screen) screen.style.display = 'none';
+  }, 300);
+}
+
+(async function route(){
+  startStatusRotation();
+
+  const params = new URLSearchParams(location.search);
+  const slug = (params.get('invite') || params.get('slug') || params.get('id') || '').trim();
+  const temaQuery = (params.get('tema') || '').toLowerCase().trim();
+
+  if(!slug){
+    return showError('Link Tidak Valid', 'Link undangan tidak menyertakan slug.<br>Pastikan link yang Anda buka benar.', '🔗');
+  }
+
+  const demo = isDemo(slug);
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 45000);
+
+  try{
+    const temaForApi = temaQuery || '';
+    const url = `${API}?action=get&slug=${encodeURIComponent(slug)}${temaQuery ? `&tema=${encodeURIComponent(temaQuery)}` : ''}`;
+    const res = await fetch(url, {
+      headers: { 'Accept':'application/json' },
+      signal: controller.signal
+    });
+    clearTimeout(timeoutId);
+
+    const text = await res.text();
+    let j;
+    try {
+      j = JSON.parse(text);
+    } catch(e) {
+      return showError('Server Error', 'Respons dari server tidak valid.<br>Silakan coba lagi nanti.', '⚠');
+    }
+
+    if(j.result === 'error' || j.success === false){
+      return showError('Undangan Tidak Ditemukan', j.message || 'Data tidak ditemukan.', '💌');
+    }
+
+    let data = j.data || j;
+
+    if(Array.isArray(data)){
+      data = data.find(x => String(x.slug).toLowerCase() === slug.toLowerCase());
+      if(!data) return showError('Undangan Tidak Ditemukan', `Slug "${slug}" tidak ada dalam database.`, '🔍');
+    }
+
+    if(!data || !data.pria){
+      return showError('Data Kosong', 'Data undangan tidak lengkap.', '💌');
+    }
+
+    if(!demo){
+      const rawStatus = String(data.status || '').toLowerCase();
+      const statusBayar = String(data.statusPembayaran || data.status_pembayaran || '').toUpperCase();
+      const statusUndangan = String(data.statusUndangan || data.status_undangan || '').toLowerCase();
+
+      const isActive =
+        rawStatus === 'active' ||
+        rawStatus === 'paid' ||
+        statusBayar === 'PAID' ||
+        statusBayar === 'ACTIVE' ||
+        statusUndangan === 'active' ||
+        statusUndangan === 'ready' ||
+        statusUndangan === 'paid' ||
+        statusUndangan === 'completed';
+
+      if(!isActive){
+        return showError(
+          'Undangan Belum Aktif',
+          `Status undangan: <b>${rawStatus || statusUndangan || statusBayar || 'pending'}</b>.<br>Silakan hubungi admin untuk aktivasi.`,
+          '⏳'
+        );
+      }
+    }
+
+    let tema;
+    if(demo){
+      tema = (temaQuery && VALID_TEMAS.includes(temaQuery))
+        ? temaQuery
+        : (data.tema || DEFAULT_TEMA).toLowerCase();
+    } else {
+      tema = (data.tema || DEFAULT_TEMA).toLowerCase();
+    }
+    if(!VALID_TEMAS.includes(tema)) tema = DEFAULT_TEMA;
+
+    data.__demo = demo;
+    data.__slug = slug;
+    data.__tema = tema;
+
+    try{
+      sessionStorage.setItem('ivolera-invitation', JSON.stringify(data));
+      sessionStorage.setItem('ivolera-invitation-ts', Date.now());
+      sessionStorage.setItem('ivolera-slug', slug);
+      sessionStorage.setItem('ivolera-is-demo', demo ? '1' : '0');
+      sessionStorage.setItem('ivolera-tema', tema);
+    }catch(e){}
+
+    let templateUrl = TEMPLATE_PATHS[tema] || TEMPLATE_PATHS[DEFAULT_TEMA];
+    try{
+      const head = await fetch(templateUrl, { method:'HEAD' });
+      if(!head.ok) templateUrl = TEMPLATE_PATHS[DEFAULT_TEMA];
+    }catch(e){
+      templateUrl = TEMPLATE_PATHS[DEFAULT_TEMA];
+    }
+
+    const iframeQs = new URLSearchParams();
+    iframeQs.set('invite', slug);
+    iframeQs.set('tema', tema);
+    const to = params.get('to') || '';
+    if(to) iframeQs.set('to', to);
+    if(demo) iframeQs.set('demo', '1');
+
+    const iframeUrl = `${templateUrl}?${iframeQs.toString()}`;
+    const iframeHtml = `<iframe
+      src="${iframeUrl}"
+      style="width:100%;height:100%;border:0;display:block"
+      allow="autoplay; clipboard-write"></iframe>`;
+
+    const namaPria = data.pria?.nama || '';
+    const namaWanita = data.wanita?.nama || '';
+    if(namaPria || namaWanita){
+      document.title = `${namaWanita} & ${namaPria} — Undangan Pernikahan`;
+    }
+
+    setTimeout(() => {
+      hideLoadingAndShowTemplate(iframeHtml);
+    }, 800);
+
+  }catch(err){
+    /* ✅ AUTO-RETRY: kalau timeout, reload sekali */
+    if(!sessionStorage.getItem('ivolera_retried') &&
+       (err.name === 'AbortError' || err.name === 'TypeError')) {
+      sessionStorage.setItem('ivolera_retried', '1');
+      console.warn('Fetch timeout, retry sekali...');
+      setTimeout(() => location.reload(), 1000);
+      return;
+    }
+
+    clearTimeout(timeoutId);
+    if(err.name === 'AbortError'){
+      return showError('Timeout', 'Server tidak merespon dalam 45 detik.<br>Coba refresh halaman sekali lagi.', '⏱');
+    }
+    showError('Gagal Memuat', `Terjadi kesalahan: <b>${String(err.message || err)}</b>`, '⚠');
+  }
+})();
+</script>
+</body>
+</html>
