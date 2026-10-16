@@ -896,48 +896,45 @@ function initOpening(data){
      ============================================================ */
   let audioUnlocked = false;
 
-  function unlockAudio(){
-    if(audioUnlocked || !bgMusic) return;
+function unlockAudio(){
+  if(audioUnlocked || !bgMusic) return;
+  if(!bgMusic.paused) return;  /* ← skip kalau musik sudah play */
 
-    /* Cek apakah src sudah ada */
-    const src = bgMusic.querySelector('source');
-    const hasSrc = (bgMusic.src && bgMusic.src !== location.href)
-                   || (src && src.src);
-    if(!hasSrc) return;
+  const src = bgMusic.querySelector('source');
+  const hasSrc = (bgMusic.src && bgMusic.src !== location.href)
+                 || (src && src.src);
+  if(!hasSrc) return;
 
-    /* ⚠️ JANGAN set audioUnlocked = true di sini!
-       Setelah play() berhasil, baru set true */
-    const originalVolume = bgMusic.volume;
-    bgMusic.volume = 0;
+  const originalVolume = bgMusic.volume;
+  bgMusic.volume = 0;
 
-    const p = bgMusic.play();
-    if(p !== undefined){
-      p.then(() => {
-        bgMusic.pause();
-        bgMusic.currentTime = 0;
-        bgMusic.volume = originalVolume;
-        audioUnlocked = true;                  // ← set di sini
-        removeUnlockListeners();               // ← hapus listener
-        console.log('✅ Audio unlocked');
-      }).catch(() => {
-        /* Gagal → biarkan flag false, coba lagi di event berikutnya */
-        bgMusic.volume = originalVolume;
-      });
-    }
-  }
-
-  /* ✅ Simpan referensi listener biar bisa di-remove */
-  const unlockEvents = ['touchstart','touchend','click','keydown'];
-
-  function removeUnlockListeners(){
-    unlockEvents.forEach(evt => {
-      document.removeEventListener(evt, unlockAudio);
+  const p = bgMusic.play();
+  if(p !== undefined){
+    p.then(() => {
+      bgMusic.pause();
+      bgMusic.currentTime = 0;
+      bgMusic.volume = originalVolume;
+      audioUnlocked = true;
+      removeUnlockListeners();
+      console.log('✅ Audio unlocked');
+    }).catch(() => {
+      bgMusic.volume = originalVolume;
     });
   }
+}
 
+/* ⚠️ JANGAN pakai 'click' — konflik dengan tombol Buka Undangan */
+const unlockEvents = ['touchstart', 'touchend', 'keydown'];
+
+function removeUnlockListeners(){
   unlockEvents.forEach(evt => {
-    document.addEventListener(evt, unlockAudio, { passive: true });
+    document.removeEventListener(evt, unlockAudio);
   });
+}
+
+unlockEvents.forEach(evt => {
+  document.addEventListener(evt, unlockAudio, { passive: true });
+});
 
   /* ============================================================
      3. FUNGSI PLAY MUSIK — synchronous + cek readyState
