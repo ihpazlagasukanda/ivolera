@@ -874,10 +874,8 @@ function initOpening(data){
     bgMusic.setAttribute('webkit-playsinline', '');
     bgMusic.playsInline = true;
 
-    /* Mulai buffer audio */
     try{ bgMusic.load(); }catch(e){}
 
-    /* Track state */
     bgMusic.addEventListener('play', () => {
       if(musicToggle) musicToggle.classList.add('playing');
     });
@@ -890,54 +888,63 @@ function initOpening(data){
   }
 
   /* ============================================================
-     2. FUNGSI UNLOCK AUDIO
-     Trik: play() dengan volume 0 → langsung pause
-     Setelah berhasil, hapus semua listener
+     2. STATE FLAG — cegah race condition
      ============================================================ */
   let audioUnlocked = false;
-
-function unlockAudio(){
-  if(audioUnlocked || !bgMusic) return;
-  if(!bgMusic.paused) return;  /* ← skip kalau musik sudah play */
-
-  const src = bgMusic.querySelector('source');
-  const hasSrc = (bgMusic.src && bgMusic.src !== location.href)
-                 || (src && src.src);
-  if(!hasSrc) return;
-
-  const originalVolume = bgMusic.volume;
-  bgMusic.volume = 0;
-
-  const p = bgMusic.play();
-  if(p !== undefined){
-    p.then(() => {
-      bgMusic.pause();
-      bgMusic.currentTime = 0;
-      bgMusic.volume = originalVolume;
-      audioUnlocked = true;
-      removeUnlockListeners();
-      console.log('✅ Audio unlocked');
-    }).catch(() => {
-      bgMusic.volume = originalVolume;
-    });
-  }
-}
-
-/* ⚠️ JANGAN pakai 'click' — konflik dengan tombol Buka Undangan */
-const unlockEvents = ['touchstart', 'touchend', 'keydown'];
-
-function removeUnlockListeners(){
-  unlockEvents.forEach(evt => {
-    document.removeEventListener(evt, unlockAudio);
-  });
-}
-
-unlockEvents.forEach(evt => {
-  document.addEventListener(evt, unlockAudio, { passive: true });
-});
+  let openingClicked = false;     /* ← flag baru: user sudah klik tombol */
+  let allowPause = true;          /* ← flag baru: izinkan pause */
 
   /* ============================================================
-     3. FUNGSI PLAY MUSIK — synchronous + cek readyState
+     3. FUNGSI UNLOCK — HANYA untuk iOS Safari, minimal
+     ============================================================ */
+  function unlockAudio(){
+    /* Skip kalau sudah unlock / sudah di klik / musik sudah play */
+    if(audioUnlocked) return;
+    if(openingClicked) return;       /* ← skip kalau tombol sudah diklik */
+    if(!bgMusic) return;
+    if(!bgMusic.paused) return;
+
+    const src = bgMusic.querySelector('source');
+    const hasSrc = (bgMusic.src && bgMusic.src !== location.href)
+                   || (src && src.src);
+    if(!hasSrc) return;
+
+    const originalVolume = bgMusic.volume;
+    bgMusic.volume = 0;
+
+    const p = bgMusic.play();
+    if(p !== undefined){
+      p.then(() => {
+        /* ✅ Cek lagi — jangan pause kalau user sudah klik tombol */
+        if(openingClicked) return;
+
+        bgMusic.pause();
+        bgMusic.currentTime = 0;
+        bgMusic.volume = originalVolume;
+        audioUnlocked = true;
+        cleanupUnlockListeners();
+        console.log('✅ Audio unlocked');
+      }).catch(() => {
+        bgMusic.volume = originalVolume;
+      });
+    }
+  }
+
+  /* ✅ HANYA touchstart — jangan pakai click */
+  const unlockEvents = ['touchstart'];
+
+  function cleanupUnlockListeners(){
+    unlockEvents.forEach(evt => {
+      document.removeEventListener(evt, unlockAudio);
+    });
+  }
+
+  unlockEvents.forEach(evt => {
+    document.addEventListener(evt, unlockAudio, { passive: true });
+  });
+
+  /* ============================================================
+     4. FUNGSI PLAY MUSIK — synchronous
      ============================================================ */
   function playMusicSync(){
     if(!bgMusic) return;
@@ -950,21 +957,27 @@ unlockEvents.forEach(evt => {
       return;
     }
 
+    /* ✅ Set flag — biar unlock tidak ganggu */
+    openingClicked = true;
+    audioUnlocked = true;
+
+    /* ✅ Hapus semua unlock listener */
+    cleanupUnlockListeners();
+
     bgMusic.volume = 0.5;
     bgMusic.muted = false;
 
-    /* ✅ Panggil play() LANGSUNG di dalam event handler (synchronous) */
     const p = bgMusic.play();
 
     if(p !== undefined){
       p.then(() => {
         if(musicToggle) musicToggle.classList.add('playing');
-        console.log('✅ Musik berhasil diputar');
+        console.log('✅ Musik play');
       }).catch(err => {
-        console.warn('⚠️ Musik gagal diputar:', err.message);
+        console.warn('⚠️ Musik gagal:', err.message);
         if(musicToggle) musicToggle.classList.remove('playing');
 
-        /* Retry sekali lagi setelah interaksi user */
+        /* Retry setelah interaksi user */
         const retry = () => {
           bgMusic.play().then(() => {
             if(musicToggle) musicToggle.classList.add('playing');
@@ -977,10 +990,13 @@ unlockEvents.forEach(evt => {
   }
 
   /* ============================================================
-     4. KLIK TOMBOL "BUKA UNDANGAN"
+     5. KLIK TOMBOL "BUKA UNDANGAN"
      ============================================================ */
   openingBtn.addEventListener('click', () => {
-    /* ✅ Play music SYNCHRONOUSLY (di dalam event handler) */
+    /* ✅ Set flag PALING AWAL — biar unlock tidak sempat jalan */
+    openingClicked = true;
+
+    /* ✅ Play music SYNCHRONOUSLY */
     playMusicSync();
 
     /* Pause & hapus video opening */
@@ -1008,11 +1024,12 @@ unlockEvents.forEach(evt => {
   });
 
   /* ============================================================
-     5. MUSIC TOGGLE (tombol manual)
+     6. MUSIC TOGGLE MANUAL
      ============================================================ */
   if(musicToggle){
     musicToggle.addEventListener('click', () => {
       if(!bgMusic) return;
+      openingClicked = true;
       if(bgMusic.paused){
         bgMusic.play().then(() => {
           musicToggle.classList.add('playing');
