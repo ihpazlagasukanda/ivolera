@@ -5,7 +5,7 @@
    - Semua confirm() → askConfirm()
    - No alert/prompt
    ===================================================================== */
-const API = 'https://script.google.com/macros/s/AKfycbx6c_a04kR_7EBxOTpcRDP9gMoG7bVtgvzQs7_eZzLt8gQyCULH9QY388KaGS2BceZp/exec';
+const API = 'https://script.google.com/macros/s/AKfycbzdU4jGMwVdRa5Ud5vNs6E1KLUM_qccojnBC6iu7S9pWVzvdezV-Z4uF6Z5Tg4bjY1V/exec';
 const ADMIN_WA = '6289609289911'; // 🚨 GANTI
 const MAX = { galeri: 20, rangkaian: 10, cerita: 10, rekening: 5 };
 const MB = 1048576;
